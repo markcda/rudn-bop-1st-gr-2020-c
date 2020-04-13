@@ -37,15 +37,6 @@ bool isEndOfString(char sym) {
 }
 
 // Прикладные функции ввода чисел
-float_nstd scanFloat() {
-  float_nstd fns = {0, true};
-  char number[30];
-  fgets(number, 30, stdin);
-  fns.num = strtof(number, 0);
-  fns.status = isPartOfFloat(number[0]);
-  return fns;
-}
-
 int *countSplits(char in[]) {
   int numbersCounter = 0, stringLength = DEFAULT_STR_LENGTH;
   bool prevIsSpace = true;
@@ -67,6 +58,15 @@ int *countSplits(char in[]) {
   res[0] = numbersCounter;
   res[1] = stringLength;
   return res;
+}
+
+float_nstd scanFloat() {
+  float_nstd fns = {0, true};
+  char number[30];
+  fgets(number, 30, stdin);
+  fns.num = strtof(number, 0);
+  fns.status = isPartOfFloat(number[0]);
+  return fns;
 }
 
 float_nstd *splitFloats(char in[], int numberCounter, int stringLength) {
@@ -160,6 +160,57 @@ int_nstd *scanInts() {
   int_nstd *ints = splitInts(in, res[0], res[1]);
   free(res);
   return ints;
+}
+
+double_nstd scanDouble() {
+  double_nstd fns = {0, true};
+  char number[45];
+  fgets(number, 45, stdin);
+  fns.num = strtof(number, 0);
+  fns.status = isPartOfFloat(number[0]);
+  return fns;
+}
+
+double_nstd *splitDoubles(char in[], int numberCounter, int stringLength) {
+  double_nstd *doubles = malloc((numberCounter + 1) * sizeof(float_nstd));
+  char temp[DEFAULT_STR_LENGTH];
+  int i = 0, tI = 0, numeral = 0;
+  bool prevIsSpace = true;
+  for (int j = 0; j < DEFAULT_STR_LENGTH; j++) temp[j] = ' ';
+  doubles[numeral + 1].status = true;
+  while (i < stringLength) {
+    if (in[i] == ' ') {
+      if (not prevIsSpace) {
+        doubles[numeral + 1].num = atof(temp);
+        numeral++;
+        doubles[numeral + 1].status = true;
+        for (int j = 0; j < DEFAULT_STR_LENGTH; j++) temp[j] = ' ';
+        tI = 0;
+      }
+      prevIsSpace = true;
+    } else if (isPartOfFloat(in[i])) {
+      temp[tI] = in[i];
+      tI++;
+      prevIsSpace = false;
+    } else {
+      doubles[numeral + 1].status = false;
+      prevIsSpace = false;
+    }
+    i++;
+  }
+  doubles[numeral + 1].num = atof(temp);
+  doubles[0].num = numeral + 1;
+  doubles[0].status = true;
+  return doubles;
+}
+
+double_nstd *scanDoubles() {
+  char in[DEFAULT_STR_LENGTH];
+  fgets(in, DEFAULT_STR_LENGTH, stdin);
+  int *res = countSplits(in);
+  double_nstd *doubles = splitDoubles(in, res[0], res[1]);
+  free(res);
+  return doubles;
 }
 
 // Прикладные функции для получения псевдослучайных наборов чисел

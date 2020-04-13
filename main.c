@@ -4,113 +4,131 @@
 #include "laba4.h"
 #include "laba5.h"
 #include "laba6.h"
+#include "laba7.h"
 #include "nonstdio.h"
 
 void starter(int variant) {
   switch (variant) {
-    case 1: {
-      average();
-      break;
-    }
-    case 2: {
-      numberAndNumeral();
-      break;
-    }
-    case 3: {
-      maxAndMin();
-      break;
-    }
-    case 4: {
-      cows();
-      break;
-    }
-    case 5: {
-      lesJours();
-      break;
-    }
-    case 6: {
-      pyramid();
-      break;
-    }
-    case 7: {
-      fortunaNumber();
-      break;
-    }
-    case 8: {
-      guessNumber();
-      break;
-    }
-    case 9: {
-      piNum();
-      break;
-    }
-    case 10: {
-      pifagoreanTable();
-      break;
-    }
-    case 11: {
-      pyramid2();
-      break;
-    }
-    case 12: {
-      adding();
-      break;
-    }
-    case 13: {
-      playingArithmetic();
-      break;
-    }
-    case 14: {
-      travelTime();
-      break;
-    }
-    case 15: {
-      array_l5_1();
-      break;
-    }
-    case 16: {
-      array_l5_2();
-      break;
-    }
-    case 17: {
-      array_l5_3();
-      break;
-    }
-    case 18: {
-      array_l5_4();
-      break;
-    }
-    case 19: {
-      array_l5_5();
-      break;
-    }
-    case 20: {
-      matrix_l6_1();
-      break;
-    }
-    case 21: {
-      matrix_l6_2();
-      break;
-    }
-    case 22: {
-      matrix_l6_3();
-      break;
-    }
-    case 23: {
-      matrix_l6_4();
-      break;
-    }
-    case 24: {
-      matrix_l6_5();
-      break;
-    }
+  case 1: {
+    average();
+    break;
+  }
+  case 2: {
+    numberAndNumeral();
+    break;
+  }
+  case 3: {
+    maxAndMin();
+    break;
+  }
+  case 4: {
+    cows();
+    break;
+  }
+  case 5: {
+    lesJours();
+    break;
+  }
+  case 6: {
+    pyramid();
+    break;
+  }
+  case 7: {
+    fortunaNumber();
+    break;
+  }
+  case 8: {
+    guessNumber();
+    break;
+  }
+  case 9: {
+    piNum();
+    break;
+  }
+  case 10: {
+    pifagoreanTable();
+    break;
+  }
+  case 11: {
+    pyramid2();
+    break;
+  }
+  case 12: {
+    adding();
+    break;
+  }
+  case 13: {
+    playingArithmetic();
+    break;
+  }
+  case 14: {
+    travelTime();
+    break;
+  }
+  case 15: {
+    array_l5_1();
+    break;
+  }
+  case 16: {
+    array_l5_2();
+    break;
+  }
+  case 17: {
+    array_l5_3();
+    break;
+  }
+  case 18: {
+    array_l5_4();
+    break;
+  }
+  case 19: {
+    array_l5_5();
+    break;
+  }
+  case 20: {
+    matrix_l6_1();
+    break;
+  }
+  case 21: {
+    matrix_l6_2();
+    break;
+  }
+  case 22: {
+    matrix_l6_3();
+    break;
+  }
+  case 23: {
+    matrix_l6_4();
+    break;
+  }
+  case 24: {
+    matrix_l6_5();
+    break;
+  }
+  case 25: {
+    l7_1();
+    break;
+  }
+  case 26: {
+    l7_2();
+    break;
+  }
+  case 27: {
+    l7_3();
+    break;
+  }
+  case 28: {
+    l7_4();
+    break;
+  }
   }
 }
 
 int main() {
   // Инициализируем оболочку.
-  setlocale(LC_ALL, "Rus");
-  printf("[Информация о выпуске] Максимальная длина строки: %d\n", DEFAULT_STR_LENGTH);
+  // setlocale(LC_ALL, "Rus");
+  printf("[Информация о выпуске] Максимальная длина строки: %d\n",
+         DEFAULT_STR_LENGTH);
   srand(time(NULL));
   int_nstd fn;
   char l[DEFAULT_STR_LENGTH];
@@ -122,9 +140,8 @@ int main() {
     printf("-------------------------------------------------\n");
     printf("Привет! Выбери задание, которое хочешь проверить:\n");
     printf("0)  Выход\n");
-    printf(
-        "1)  [Лаба 3] Задание 1 - Среднее значение введённых "
-        "чисел\n");
+    printf("1)  [Лаба 3] Задание 1 - Среднее значение введённых "
+           "чисел\n");
     printf("2)  [Лаба 3] Задание 2 - Число и цифра\n");
     printf("3)  [Лаба 3] Задание 3 - Максимум и минимум\n");
     printf("4)  [Лаба 4] Упражнение 1 - Коровы\n");
@@ -148,12 +165,18 @@ int main() {
     printf("22) [Лаба 6] Задание 3 - Меняем диагонали местами\n");
     printf("23) [Лаба 6] Задание 4 - Побитовые операции\n");
     printf("24) [Лаба 6] Задание 5 - Динамический массив дробных чисел\n");
+    printf("25) [Лаба 7] Задание 1 - Положительное число или нет?\n");
+    printf("26) [Лаба 7] Задание 2 - Вывод введёного числа\n");
+    printf("27) [Лаба 7] Задание 3 - Статистика по массиву\n");
+    printf("28) [Лаба 7] Задание 4 - Символы в множество\n");
+    printf("12) [Лаба 7] Задание 5 - Сложение\n");
 
     // Ввод варианта
     fn = scanInt();
 
     // Условия выхода
-    if (not fn.status or not fn.num) break;
+    if (not fn.status or not fn.num)
+      break;
 
     // Исполнение варианта
     starter(fn.num);
