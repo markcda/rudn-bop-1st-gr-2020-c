@@ -1,4 +1,5 @@
 #include "laba7.h"
+#include <string.h>
 
 /* Задание 1.
  * В  программировании  можно  из  одной  функции  вызывать  другую.
@@ -175,4 +176,119 @@ void l7_4() {
   set = (char *)realloc(set, cntr * sizeof(char));
   set[cntr - 1] = '\0';
   printf("\tПолучившийся набор символов: %s\n", set);
+}
+
+/* Задание 6*. «Авторассылка»
+ * Найти в строке указанную подстроку и заменить ее на новую. Строку, ее
+ * подстроку для замены иновую подстроку вводит пользователь. Пример работы
+ * программы:
+ *
+ * Строка: Здравствуйте, Змей Горыныч. Сегодня совещание в 10.00
+ * Ее заменяемая подстрока: Змей Горыныч
+ * Новая подстрока: Арчибальт Аристархович
+ * Здравствуйте, Арчибальт Аристархович. Сегодня совещание в 10.00 */
+void l7_6() {
+  printf("Введите строку: ");
+  char *str = (char *)malloc(DEFAULT_STR_LENGTH * sizeof(char));
+  fgets(str, DEFAULT_STR_LENGTH, stdin);
+  printf("Введите подстроку поиска: ");
+  char *search = (char *)malloc(DEFAULT_STR_LENGTH * sizeof(char));
+  fgets(search, DEFAULT_STR_LENGTH, stdin);
+  printf("Введите подстроку замены: ");
+  char *replace = (char *)malloc(DEFAULT_STR_LENGTH * sizeof(char));
+  fgets(replace, DEFAULT_STR_LENGTH, stdin);
+  char *p;
+  int index = -1;
+  if ((p = strstr(str, search)) != NULL)
+    index = p - str;
+  else
+    printf("В строке нет подстроки!");
+}
+
+/* Задание **. Магический квадрат
+ * Подробнее про это: https://en.wikipedia.org/wiki/Magic_square */
+void printMagicSquare(int **A, int n) {
+  int r, c;
+  printf("\tМагический квадрат:\n\t");
+  for (r = 0; r < n; r++, printf("\n\t"))
+    for (c = 0; c < n; c++)
+      printf("%3d", A[r][c]);
+  printf("\n");
+}
+
+void createMagicSquares(int **A, int sum, int p, int n, int *out) {
+  int i, j, k, s;
+  for (i = 1; i <= n * n; i++) {
+    for (j = 0; j < p; j++)
+      if (A[j / n][j % n] == i)
+        break;
+    if (j == p) {
+      A[p / n][p % n] = i;
+      if ((p + 1) % n == 0) {
+        k = p / n * n;
+        for (s = j = 0; j < n; j++)
+          s += A[(k + j) / n][(k + j) % n];
+        if (s < sum)
+          continue;
+        if (s > sum)
+          return;
+      } else if (p / n == n - 1) {
+        k = p % n;
+        for (s = j = 0; j < n * n; j += n)
+          s += A[(k + j) / n][(k + j) % n];
+        if (s < sum)
+          continue;
+        if (s > sum)
+          return;
+        if (!k) {
+          for (s = 0, j = n - 1; j >= 0; j--, k += n)
+            s += A[(k + j) / n][(k + j) % n];
+          if (s < sum)
+            continue;
+          if (s > sum)
+            return;
+        }
+      }
+      if (p + 1 < n * n)
+        createMagicSquares(A, sum, p + 1, n, out);
+      else {
+        for (s = j = 0; j < n; j++)
+          s += A[j][j];
+        if (s < sum)
+          continue;
+        if (s > sum)
+          return;
+        if (*out == 0) {
+          printMagicSquare(A, n);
+          *out -= 1;
+        } else if (*out == 1)
+          printMagicSquare(A, n);
+      }
+    }
+  }
+}
+
+void its_a_kind_of_magic() {
+  printf("\tВведите размерность магического квадрата: ");
+  int_nstd n = scanInt();
+  if (not n.status)
+    return;
+  printf("\tВведите 0, если хотите ограничить число результатов одним, и 1, "
+         "если вывести все результаты: ");
+  int_nstd times = scanInt();
+  if (not times.status)
+    return;
+  int **A, sum = 0, *out;
+  out = (int *)malloc(sizeof(int));
+  *out = times.num;
+  A = (int **)malloc(n.num * sizeof(int *));
+  for (int i = 0; i < n.num; i++)
+    A[i] = (int *)malloc(n.num * sizeof(int));
+  for (int i = 1; i <= n.num * n.num; i++)
+    sum += i;
+  sum /= n.num;
+  createMagicSquares(A, sum, 0, n.num, out);
+  for (int i = 0; i < n.num; i++)
+    free(A[i]);
+  free(A);
 }

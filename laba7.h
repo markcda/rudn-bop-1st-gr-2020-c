@@ -23,4 +23,12 @@ void l7_3();
 // Задание 4.
 void l7_4();
 
+// Задание 6*.
+void l7_6();
+
+// Задание **.
+void printMagicSquare(int **A, int n);
+void createMagicSquares(int **A, int sum, int p, int n, int *out);
+void its_a_kind_of_magic();
+
 #endif // LABA7_H
