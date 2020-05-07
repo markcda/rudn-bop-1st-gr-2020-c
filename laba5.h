@@ -19,4 +19,4 @@ void array_l5_4();
 // Задание 5.
 void array_l5_5();
 
-#endif  // LABA5_H
+#endif // LABA5_H

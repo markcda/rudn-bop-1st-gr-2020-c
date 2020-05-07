@@ -9,29 +9,32 @@
 void cows() {
   printf("\tВведите число коров: ");
   int_nstd n = scanInt();
-  if (not n.status) return;
+  if (not n.status)
+    return;
   printf("\tНа лугу пасётся ");
   switch (n.num % 10) {
-    case 1: {
-      printf("%i корова.\n", n.num);
-      break;
-    }
-    case 2:
-    case 3:
-    case 4: {
-      if (not ((n.num > 10) and (n.num < 15))) printf("%i коровы.\n", n.num);
-      else printf("%i коров.\n", n.num);
-      break;
-    }
-    case 5:
-    case 6:
-    case 7:
-    case 8:
-    case 9:
-    case 0: {
+  case 1: {
+    printf("%i корова.\n", n.num);
+    break;
+  }
+  case 2:
+  case 3:
+  case 4: {
+    if (not((n.num > 10) and (n.num < 15)))
+      printf("%i коровы.\n", n.num);
+    else
       printf("%i коров.\n", n.num);
-      break;
-    }
+    break;
+  }
+  case 5:
+  case 6:
+  case 7:
+  case 8:
+  case 9:
+  case 0: {
+    printf("%i коров.\n", n.num);
+    break;
+  }
   }
 }
 
@@ -63,44 +66,47 @@ int Date(int D, int M, int Y) {
 void lesJours() {
   printf("\tВведите число: ");
   int_nstd d = scanInt();
-  if (not d.status) return;
+  if (not d.status)
+    return;
   printf("\tВведите месяц: ");
   int_nstd m = scanInt();
-  if (not m.status) return;
+  if (not m.status)
+    return;
   printf("\tВведите год: ");
   int_nstd y = scanInt();
-  if (not y.status) return;
+  if (not y.status)
+    return;
   int n = Date(d.num, m.num, y.num);
   printf("\tСегодня ");
   switch (n) {
-    case 0: {
-      printf("воскресенье.\n");
-      break;
-    }
-    case 1: {
-      printf("понедельник.\n");
-      break;
-    }
-    case 2: {
-      printf("вторник.\n");
-      break;
-    }
-    case 3: {
-      printf("среда.\n");
-      break;
-    }
-    case 4: {
-      printf("четверг.\n");
-      break;
-    }
-    case 5: {
-      printf("пятница.\n");
-      break;
-    }
-    case 6: {
-      printf("суббота.\n");
-      break;
-    }
+  case 0: {
+    printf("воскресенье.\n");
+    break;
+  }
+  case 1: {
+    printf("понедельник.\n");
+    break;
+  }
+  case 2: {
+    printf("вторник.\n");
+    break;
+  }
+  case 3: {
+    printf("среда.\n");
+    break;
+  }
+  case 4: {
+    printf("четверг.\n");
+    break;
+  }
+  case 5: {
+    printf("пятница.\n");
+    break;
+  }
+  case 6: {
+    printf("суббота.\n");
+    break;
+  }
   }
 }
 
@@ -113,11 +119,14 @@ void lesJours() {
 void pyramid() {
   printf("\tВведите высоту пирамиды: ");
   int_nstd h = scanInt();
-  if (not h.status) return;
+  if (not h.status)
+    return;
   for (int n = 1; n <= h.num; n++) {
     printf("\t");
-    for (int i = 1; i <= h.num - n; i++) printf(" ");
-    for (int i = 1; i <= 1 + 2 * (n - 1); i++) printf("^");
+    for (int i = 1; i <= h.num - n; i++)
+      printf(" ");
+    for (int i = 1; i <= 1 + 2 * (n - 1); i++)
+      printf("^");
     printf("\n");
   }
 }
@@ -130,7 +139,8 @@ void pyramid() {
 void fortunaNumber() {
   printf("\tВведите число: ");
   int_nstd num = scanInt();
-  if (not num.status) return;
+  if (not num.status)
+    return;
   num.num = num.num % 10000;
   char str[4];
   for (int i = 0; i < 4; i++) {
@@ -159,7 +169,8 @@ int_nstd guesser(int current) {
 void guessNumber() {
   printf("\tВведите N: ");
   int_nstd N = scanInt();
-  if (not N.status) return;
+  if (not N.status)
+    return;
   int left = 1, right = N.num, current;
   int_nstd choice;
   current = (right + 1) / 2;
@@ -205,8 +216,10 @@ long double piV(int iters) {
   long double total = 1.0;
   for (int i = 0; i < iters; i++) {
     total *= (long double)up / down;
-    if (i % 2 == 1) up += 2;
-    if (i % 2 == 0) down += 2;
+    if (i % 2 == 1)
+      up += 2;
+    if (i % 2 == 0)
+      down += 2;
   }
   return total * 2;
 }
@@ -214,7 +227,8 @@ long double piV(int iters) {
 void piNum() {
   printf("\tВведите число итераций: ");
   int_nstd iters = scanInt();
-  if (not iters.status) return;
+  if (not iters.status)
+    return;
   int MLdown = 1, Vup = 2, Vdown = 1;
   short int MLsign = 1;
   long double MLtotal = 0.0, Vtotal = 1.0;
@@ -226,8 +240,10 @@ void piNum() {
     MLdown += 2;
     // 2. piV (Валлис)
     Vtotal *= (long double)Vup / Vdown;
-    if (i % 2 == 1) Vup += 2;
-    if (i % 2 == 0) Vdown += 2;
+    if (i % 2 == 1)
+      Vup += 2;
+    if (i % 2 == 0)
+      Vdown += 2;
     // 3. Вывод
     printf("\t| %10d | %10.8Lf | %10.8Lf |\n", (i + 1), MLtotal * 4,
            Vtotal * 2);
@@ -247,18 +263,16 @@ void pifagoreanTable() {
       "\t|---------------------------------------------------------------------"
       "--|\n");
   for (int i = 1; i <= 10; i++)
-    printf(
-        "\t| %d * %2d = %2d | %d * %2d = %2d | %d * %2d = %2d | %d * %2d = "
-        "%2d | %2d * %2d = %3d |\n",
-        1, i, i, 2, i, 2 * i, 3, i, 3 * i, 4, i, 4 * i, 5, i, 5 * i);
+    printf("\t| %d * %2d = %2d | %d * %2d = %2d | %d * %2d = %2d | %d * %2d = "
+           "%2d | %2d * %2d = %3d |\n",
+           1, i, i, 2, i, 2 * i, 3, i, 3 * i, 4, i, 4 * i, 5, i, 5 * i);
   printf(
       "\t|---------------------------------------------------------------------"
       "--|\n");
   for (int i = 1; i <= 10; i++)
-    printf(
-        "\t| %d * %2d = %2d | %d * %2d = %2d | %d * %2d = %2d | %d * %2d = "
-        "%2d | %2d * %2d = %3d |\n",
-        6, i, 6 * i, 7, i, 7 * i, 8, i, 8 * i, 9, i, 9 * i, 10, i, 10 * i);
+    printf("\t| %d * %2d = %2d | %d * %2d = %2d | %d * %2d = %2d | %d * %2d = "
+           "%2d | %2d * %2d = %3d |\n",
+           6, i, 6 * i, 7, i, 7 * i, 8, i, 8 * i, 9, i, 9 * i, 10, i, 10 * i);
   printf(
       "\t|---------------------------------------------------------------------"
       "--|\n");
@@ -274,18 +288,23 @@ void pifagoreanTable() {
 void pyramid2() {
   printf("\tВведите высоту пирамиды: ");
   int_nstd h = scanInt();
-  if (not h.status) return;
+  if (not h.status)
+    return;
   int l = h.num * 2 - 3;
   printf("\t");
-  for (int j = 0; j < (l - 1) / 2; j++) printf(" ");
+  for (int j = 0; j < (l - 1) / 2; j++)
+    printf(" ");
   printf("^\n\t");
   for (int i = 1; i < h.num - 1; i++) {
-    for (int j = 0; j < (l - 1 - 2 * i) / 2; j++) printf(" ");
+    for (int j = 0; j < (l - 1 - 2 * i) / 2; j++)
+      printf(" ");
     printf("/");
-    for (int j = 0; j < 1 + (i - 1) * 2; j++) printf(" ");
+    for (int j = 0; j < 1 + (i - 1) * 2; j++)
+      printf(" ");
     printf("\\\n\t");
   }
-  for (int j = 0; j < l; j++) printf("_");
+  for (int j = 0; j < l; j++)
+    printf("_");
   printf("\n");
 }
 
@@ -347,20 +366,22 @@ void playingArithmetic() {
   while (total < 5) {
     printf("\tВведите два числа через пробел: ");
     int_nstd *nums = scanInts();
-    if (nums[0].num != 2) return;
-    if (not nums[1].status or not nums[2].status) return;
+    if (nums[0].num != 2)
+      return;
+    if (not nums[1].status or not nums[2].status)
+      return;
     printf("\tЧему равно их произведение? ");
     int_nstd result = scanInt();
-    if (not result.status) return;
+    if (not result.status)
+      return;
     if (result.num == nums[1].num * nums[2].num) {
       total += 1;
       wins += 1;
     } else
       fails += 1;
     if (wins == 3) {
-      printf(
-          "\tЕдрить-кадрить, ты красавчик! Три раза подряд правильно "
-          "посчитал!\n");
+      printf("\tЕдрить-кадрить, ты красавчик! Три раза подряд правильно "
+             "посчитал!\n");
       wins = 0;
     }
     if (fails == 3) {
@@ -404,14 +425,15 @@ void travelTime() {
     printf("\tВведите место, в которое вы сегодня собрались: ");
     char curr[DEFAULT_STR_LENGTH];
     fgets(curr, DEFAULT_STR_LENGTH, stdin);
-    if (isEndOfString(curr[0])) return;
+    if (isEndOfString(curr[0]))
+      return;
     short int timeTo = -1;
     for (int i = 0; i < 6; i++)
-      if (isEqual(places[i].title, curr)) timeTo = places[i].travelTime;
+      if (isEqual(places[i].title, curr))
+        timeTo = places[i].travelTime;
     if (timeTo == -1) {
-      printf(
-          "\tЭм... к сожалению, среди ваших любимых мест (точнее, "
-          "предустановленных) нет такого. Зато вот что там есть:\n");
+      printf("\tЭм... к сожалению, среди ваших любимых мест (точнее, "
+             "предустановленных) нет такого. Зато вот что там есть:\n");
       for (int i = 0; i < 6; i++)
         printf("\t\t%d) %s - %d мин\n", i, places[i].title,
                places[i].travelTime);

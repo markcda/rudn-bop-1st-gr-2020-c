@@ -39,7 +39,7 @@ typedef struct {
   bool status;
 } double_nstd;
 
-bool isEqual(char str1[], char str2[]);
+bool isEqual(char *str1, char *str2);
 
 // Прикладные функции для определения типа символа
 bool isPartOfFloat(char sym);
@@ -50,15 +50,16 @@ bool isEndOfString(char sym);
 int *countSplits(char in[]);
 float_nstd *splitFloats(char in[], int numberCounter, int stringLength);
 float_nstd scanFloat();
-float_nstd *scanFloats();  // через пробел, в первом элементе - количество чисел
+float_nstd *scanFloats(); // через пробел, в первом элементе - количество чисел
 int_nstd *splitInts(char in[], int numberCounter, int stringLength);
 int_nstd scanInt();
-int_nstd *scanInts();  // через пробел, в первом элементе - количество чисел
+int_nstd *scanInts(); // через пробел, в первом элементе - количество чисел
 double_nstd *splitDoubles(char in[], int numberCounter, int stringLength);
 double_nstd scanDouble();
-double_nstd *scanDoubles();  // через пробел, в первом элементе - количество чисел
+double_nstd *
+scanDoubles(); // через пробел, в первом элементе - количество чисел
 
 // Прикладные функции для получения псевдослучайных наборов чисел
 int uniform(int min, int max);
 
-#endif  // LABS_NONSTDIO_H
+#endif // LABS_NONSTDIO_H

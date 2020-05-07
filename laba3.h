@@ -16,4 +16,4 @@ void numberAndNumeral();
 // Задание 3
 void maxAndMin();
 
-#endif  // LABS_LABA3_H
+#endif // LABS_LABA3_H

@@ -30,8 +30,8 @@ int_nstd guesser(int current);
 void guessNumber();
 
 // Задание 2
-const long double piRes;  // для следующих заданий (алгоритм ML, 3 млн
-                          // итераций, округление в меньшую сторону)
+const long double piRes; // для следующих заданий (алгоритм ML, 3 млн
+                         // итераций, округление в меньшую сторону)
 long double piML(int iters);
 long double piV(int iters);
 void piNum();
@@ -51,4 +51,4 @@ void playingArithmetic();
 // Задание 7*
 void travelTime();
 
-#endif  // LABS_LABA4_H
+#endif // LABS_LABA4_H

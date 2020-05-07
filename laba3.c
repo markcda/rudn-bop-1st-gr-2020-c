@@ -17,7 +17,8 @@ void average() {
     printf("\tВведите следующее число (или символ, чтобы выйти): ");
     nextNumber = scanFloat();
     if (not nextNumber.status) break;
-    avr = (avr * ctr + nextNumber.num) / (ctr + 1);
+    avr = (avr * ctr + nextNumber.num) / (ctr + 1); // эта операция является
+                                                    // причиной неточностей.
     ctr++;
   }
   printf("\tСреднее значение введённых чисел равно %.5f\n", avr);

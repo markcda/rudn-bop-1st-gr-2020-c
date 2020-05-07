@@ -8,16 +8,20 @@
 void matrix_l6_1() {
   printf("\tВведите размеры матрицы через пробел (строки и столбцы): ");
   int_nstd *size = scanInts();
-  if (size[0].num != 2) return;
-  if (not size[1].status or not size[2].status) return;
-  if ((size[1].num < 1) or (size[2].num < 2)) return;
+  if (size[0].num != 2)
+    return;
+  if (not size[1].status or not size[2].status)
+    return;
+  if ((size[1].num < 1) or (size[2].num < 2))
+    return;
   int matrix[size[1].num][size[2].num];
   // Выбор варианта задания
   printf("\tКак вы хотите заполнить матрицу?\n");
   printf("\t1) Заполнить с клавиатуры\n");
   printf("\t2) Заполнить случайными числами\n\t");
   int_nstd variant = scanInt();
-  if (not variant.status) return;
+  if (not variant.status)
+    return;
   // Исполнение варианта с заполнением с клавиатуры
   if (variant.num == 1) {
     printf("\n\tНачиная со следующей строки, вводите числа через пробел.\n");
@@ -25,7 +29,8 @@ void matrix_l6_1() {
     for (int i = 0; i < size[1].num; i++) {
       printf("\tСтрока %d: ", i + 1);
       int_nstd *row = scanInts();
-      if (row[0].num != size[2].num - 1) return;
+      if (row[0].num != size[2].num - 1)
+        return;
       for (int j = 0; j < size[2].num - 1; j++)
         if (row[j + 1].status)
           matrix[i][j] = row[j + 1].num;
@@ -38,9 +43,11 @@ void matrix_l6_1() {
     printf(
         "\tВведите через пробел два числа, которые будут служить границами для "
         "генератора псевдослучайных чисел: ");
-    int_nstd *limits = scanInts();  // LFPRNG
-    if (limits[0].num != 2) return;
-    if (not limits[1].status or not limits[2].status) return;
+    int_nstd *limits = scanInts(); // LFPRNG
+    if (limits[0].num != 2)
+      return;
+    if (not limits[1].status or not limits[2].status)
+      return;
     int min = limits[1].num > limits[2].num ? limits[2].num : limits[1].num,
         max = limits[1].num > limits[2].num ? limits[1].num : limits[2].num;
     for (int i = 0; i < size[1].num; i++)
@@ -58,7 +65,8 @@ void matrix_l6_1() {
   printf("\tПолученная матрица:\n");
   for (int i = 0; i < size[1].num; i++) {
     printf("\t");
-    for (int j = 0; j < size[2].num; j++) printf("%4d ", matrix[i][j]);
+    for (int j = 0; j < size[2].num; j++)
+      printf("%4d ", matrix[i][j]);
     printf("\n");
   }
 }
@@ -71,16 +79,21 @@ void matrix_l6_2() {
   const int min = 1, max = 100;
   printf("\tВведите размеры матрицы через пробел (строки и столбцы): ");
   int_nstd *size = scanInts();
-  if (size[0].num != 2) return;
-  if (not size[1].status or not size[2].status) return;
-  if ((size[1].num < 1) or (size[2].num < 1)) return;
+  if (size[0].num != 2)
+    return;
+  if (not size[1].status or not size[2].status)
+    return;
+  if ((size[1].num < 1) or (size[2].num < 1))
+    return;
   int matrix[size[1].num][size[2].num];
   for (int i = 0; i < size[1].num; i++)
-    for (int j = 0; j < size[2].num; j++) matrix[i][j] = uniform(min, max);
+    for (int j = 0; j < size[2].num; j++)
+      matrix[i][j] = uniform(min, max);
   printf("\tПолученная матрица:\n");
   for (int i = 0; i < size[1].num; i++) {
     printf("\t");
-    for (int j = 0; j < size[2].num; j++) printf("%4d ", matrix[i][j]);
+    for (int j = 0; j < size[2].num; j++)
+      printf("%4d ", matrix[i][j]);
     printf("\n");
   }
   int mins[size[1].num], maxs[size[1].num], maxOfMins, minOfMaxs;
@@ -88,15 +101,19 @@ void matrix_l6_2() {
     mins[i] = matrix[i][0];
     maxs[i] = matrix[i][0];
     for (int j = 0; j < size[2].num; j++) {
-      if (matrix[i][j] < mins[i]) mins[i] = matrix[i][j];
-      if (matrix[i][j] > maxs[i]) maxs[i] = matrix[i][j];
+      if (matrix[i][j] < mins[i])
+        mins[i] = matrix[i][j];
+      if (matrix[i][j] > maxs[i])
+        maxs[i] = matrix[i][j];
     }
   }
   maxOfMins = mins[0];
   minOfMaxs = maxs[0];
   for (int i = 0; i < size[1].num; i++) {
-    if (mins[i] > maxOfMins) maxOfMins = mins[i];
-    if (maxs[i] < minOfMaxs) minOfMaxs = maxs[i];
+    if (mins[i] > maxOfMins)
+      maxOfMins = mins[i];
+    if (maxs[i] < minOfMaxs)
+      minOfMaxs = maxs[i];
   }
   printf("\tМаксимальный элемент из минимальных - %d.\n", maxOfMins);
   printf("\tА минимальный из максимальных - %d.\n", minOfMaxs);
@@ -108,15 +125,18 @@ void matrix_l6_2() {
 void matrix_l6_3() {
   printf("\tВведите размер квадратной матрицы: ");
   int_nstd size = scanInt();
-  if (not size.status) return;
-  if (size.num < 1) return;
+  if (not size.status)
+    return;
+  if (size.num < 1)
+    return;
   int matrix[size.num][size.num];
   // Выбор варианта задания
   printf("\tКак вы хотите заполнить матрицу?\n");
   printf("\t1) Заполнить с клавиатуры\n");
   printf("\t2) Заполнить случайными числами\n\t");
   int_nstd variant = scanInt();
-  if (not variant.status) return;
+  if (not variant.status)
+    return;
   // Исполнение варианта с заполнением с клавиатуры
   if (variant.num == 1) {
     printf("\n\tНачиная со следующей строки, вводите числа через пробел.\n");
@@ -124,7 +144,8 @@ void matrix_l6_3() {
     for (int i = 0; i < size.num; i++) {
       printf("\tСтрока %d: ", i + 1);
       int_nstd *row = scanInts();
-      if (row[0].num != size.num) return;
+      if (row[0].num != size.num)
+        return;
       for (int j = 0; j < size.num; j++)
         if (row[j + 1].status)
           matrix[i][j] = row[j + 1].num;
@@ -137,20 +158,24 @@ void matrix_l6_3() {
     printf(
         "\tВведите через пробел два числа, которые будут служить границами для "
         "генератора псевдослучайных чисел: ");
-    int_nstd *limits = scanInts();  // LFPRNG
-    if (limits[0].num != 2) return;
-    if (not limits[1].status or not limits[2].status) return;
+    int_nstd *limits = scanInts(); // LFPRNG
+    if (limits[0].num != 2)
+      return;
+    if (not limits[1].status or not limits[2].status)
+      return;
     int min = limits[1].num > limits[2].num ? limits[2].num : limits[1].num,
         max = limits[1].num > limits[2].num ? limits[1].num : limits[2].num;
     for (int i = 0; i < size.num; i++)
-      for (int j = 0; j < size.num; j++) matrix[i][j] = uniform(min, max);
+      for (int j = 0; j < size.num; j++)
+        matrix[i][j] = uniform(min, max);
   } else
     return;
   // Вывод матрицы
   printf("\tПолученная матрица:\n");
   for (int i = 0; i < size.num; i++) {
     printf("\t");
-    for (int j = 0; j < size.num; j++) printf("%4d ", matrix[i][j]);
+    for (int j = 0; j < size.num; j++)
+      printf("%4d ", matrix[i][j]);
     printf("\n");
   }
   // Меняем местами главную и побочную диагонали матрицы
@@ -164,7 +189,8 @@ void matrix_l6_3() {
   printf("\tИтоговая матрица:\n");
   for (int i = 0; i < size.num; i++) {
     printf("\t");
-    for (int j = 0; j < size.num; j++) printf("%4d ", matrix[i][j]);
+    for (int j = 0; j < size.num; j++)
+      printf("%4d ", matrix[i][j]);
     printf("\n");
   }
 }
@@ -178,13 +204,17 @@ void matrix_l6_4() {
   const int rows = 4, columns = 8;
   int matrix[rows][columns];
   for (int i = 0; i < 2; i++)
-    for (int j = 0; j < columns; j++) matrix[i][j] = uniform(1, 2) - 1;
-  for (int i = 0; i < columns; i++) matrix[2][i] = matrix[0][i] & matrix[1][i];
-  for (int i = 0; i < columns; i++) matrix[3][i] = matrix[0][i] | matrix[1][i];
+    for (int j = 0; j < columns; j++)
+      matrix[i][j] = uniform(1, 2) - 1;
+  for (int i = 0; i < columns; i++)
+    matrix[2][i] = matrix[0][i] & matrix[1][i];
+  for (int i = 0; i < columns; i++)
+    matrix[3][i] = matrix[0][i] | matrix[1][i];
   printf("\tИтоговая матрица:\n");
   for (int i = 0; i < rows; i++) {
     printf("\t");
-    for (int j = 0; j < columns; j++) printf("%4d ", matrix[i][j]);
+    for (int j = 0; j < columns; j++)
+      printf("%4d ", matrix[i][j]);
     printf("\n");
   }
 }
@@ -226,26 +256,31 @@ void matrix_l6_5() {
       if (not isPartOfFloat(number[i])) {
         break;
       }
-      if (number[i] == '-') array[length - 1].sign = true;
+      if (number[i] == '-')
+        array[length - 1].sign = true;
       else if (number[i] == '.') {
-        if (not afterPoint) afterPoint = true;
+        if (not afterPoint)
+          afterPoint = true;
         else {
           exitFlag = true;
           break;
         }
-      }
-      else {
+      } else {
         char curr[2] = " \0";
         curr[0] = number[i];
         if (afterPoint) {
-          if (cntr == 5) break;
-          array[length - 1].fraction5 = array[length - 1].fraction5 * 10 + atoi(curr);
+          if (cntr == 5)
+            break;
+          array[length - 1].fraction5 =
+              array[length - 1].fraction5 * 10 + atoi(curr);
           cntr++;
-        }
-        else array[length - 1].integer = array[length - 1].integer * 10 + atoi(curr);
+        } else
+          array[length - 1].integer =
+              array[length - 1].integer * 10 + atoi(curr);
       }
     }
-    if (exitFlag) break;
+    if (exitFlag)
+      break;
   }
   printf("\tИтоговая матрица:\n");
   printf("\t|-------|------------|-------|\n");

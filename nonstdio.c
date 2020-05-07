@@ -1,21 +1,23 @@
 #include "nonstdio.h"
 
-bool isEqual(char str1[], char str2[]) {
+bool isEqual(char *str1, char *str2) {
   unsigned short int len1 = DEFAULT_STR_LENGTH, len2 = DEFAULT_STR_LENGTH;
   for (int i = 0; i < DEFAULT_STR_LENGTH; i++)
-    if ((str1[i] == '\n') or (str1[i] == '\0')) {
-      len1 = i - 1;
+    if (isEndOfString(str1[i])) {
+      len1 = i;
       break;
     }
   for (int i = 0; i < DEFAULT_STR_LENGTH; i++)
-    if ((str2[i] == '\n') or (str2[i] == '\0')) {
-      len2 = i - 1;
+    if (isEndOfString(str2[i])) {
+      len2 = i;
       break;
     }
-  if (len1 != len2) return false;
+  if (len1 != len2)
+    return false;
   bool isEqual = true;
   for (int i = 0; i < len1; i++)
-    if (str1[i] != str2[i]) isEqual = false;
+    if (str1[i] != str2[i])
+      isEqual = false;
   return isEqual;
 }
 
@@ -27,12 +29,14 @@ bool isPartOfFloat(char sym) {
 }
 
 bool isPartOfInt(char sym) {
-  if ((((int)sym < 48) or ((int)sym > 57)) and (sym != '-')) return false;
+  if ((((int)sym < 48) or ((int)sym > 57)) and (sym != '-'))
+    return false;
   return true;
 }
 
 bool isEndOfString(char sym) {
-  if ((sym == '\0') or (sym == '\n') or ((int) sym == 10)) return true;
+  if ((sym == '\0') or (sym == '\n') or ((int)sym == 10))
+    return true;
   return false;
 }
 
@@ -46,7 +50,8 @@ int *countSplits(char in[]) {
       break;
     }
     if (in[i] == ' ') {
-      if (not prevIsSpace) prevIsSpace = true;
+      if (not prevIsSpace)
+        prevIsSpace = true;
     } else {
       if (prevIsSpace) {
         prevIsSpace = false;
@@ -74,7 +79,8 @@ float_nstd *splitFloats(char in[], int numberCounter, int stringLength) {
   char temp[DEFAULT_STR_LENGTH];
   int i = 0, tI = 0, numeral = 0;
   bool prevIsSpace = true;
-  for (int j = 0; j < DEFAULT_STR_LENGTH; j++) temp[j] = ' ';
+  for (int j = 0; j < DEFAULT_STR_LENGTH; j++)
+    temp[j] = ' ';
   floats[numeral + 1].status = true;
   while (i < stringLength) {
     if (in[i] == ' ') {
@@ -82,7 +88,8 @@ float_nstd *splitFloats(char in[], int numberCounter, int stringLength) {
         floats[numeral + 1].num = atof(temp);
         numeral++;
         floats[numeral + 1].status = true;
-        for (int j = 0; j < DEFAULT_STR_LENGTH; j++) temp[j] = ' ';
+        for (int j = 0; j < DEFAULT_STR_LENGTH; j++)
+          temp[j] = ' ';
         tI = 0;
       }
       prevIsSpace = true;
@@ -125,7 +132,8 @@ int_nstd *splitInts(char in[], int numberCounter, int stringLength) {
   char temp[DEFAULT_STR_LENGTH];
   int i = 0, tI = 0, numeral = 0;
   bool prevIsSpace = true;
-  for (int j = 0; j < DEFAULT_STR_LENGTH; j++) temp[j] = ' ';
+  for (int j = 0; j < DEFAULT_STR_LENGTH; j++)
+    temp[j] = ' ';
   ints[numeral + 1].status = true;
   while (i < stringLength) {
     if (in[i] == ' ') {
@@ -133,7 +141,8 @@ int_nstd *splitInts(char in[], int numberCounter, int stringLength) {
         ints[numeral + 1].num = atof(temp);
         numeral++;
         ints[numeral + 1].status = true;
-        for (int j = 0; j < DEFAULT_STR_LENGTH; j++) temp[j] = ' ';
+        for (int j = 0; j < DEFAULT_STR_LENGTH; j++)
+          temp[j] = ' ';
         tI = 0;
       }
       prevIsSpace = true;
@@ -176,7 +185,8 @@ double_nstd *splitDoubles(char in[], int numberCounter, int stringLength) {
   char temp[DEFAULT_STR_LENGTH];
   int i = 0, tI = 0, numeral = 0;
   bool prevIsSpace = true;
-  for (int j = 0; j < DEFAULT_STR_LENGTH; j++) temp[j] = ' ';
+  for (int j = 0; j < DEFAULT_STR_LENGTH; j++)
+    temp[j] = ' ';
   doubles[numeral + 1].status = true;
   while (i < stringLength) {
     if (in[i] == ' ') {
@@ -184,7 +194,8 @@ double_nstd *splitDoubles(char in[], int numberCounter, int stringLength) {
         doubles[numeral + 1].num = atof(temp);
         numeral++;
         doubles[numeral + 1].status = true;
-        for (int j = 0; j < DEFAULT_STR_LENGTH; j++) temp[j] = ' ';
+        for (int j = 0; j < DEFAULT_STR_LENGTH; j++)
+          temp[j] = ' ';
         tI = 0;
       }
       prevIsSpace = true;

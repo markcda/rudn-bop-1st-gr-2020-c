@@ -19,4 +19,4 @@ void matrix_l6_4();
 // Задание 5
 void matrix_l6_5();
 
-#endif  // LABA6_H
+#endif // LABA6_H
