@@ -21,6 +21,18 @@ bool isEqual(char *str1, char *str2) {
   return isEqual;
 }
 
+bool containsChar(char *str, char sym) {
+  int i = 0;
+  bool contains = false;
+  while (not isEndOfString(str[i])) {
+    if (str[i++] == sym) {
+      contains = true;
+      break;
+    }
+  }
+  return contains;
+}
+
 // Прикладные функции для определения типа символа
 bool isPartOfFloat(char sym) {
   if ((((int)sym < 48) or ((int)sym > 57)) and (sym != '-') and (sym != '.'))
@@ -67,7 +79,7 @@ int *countSplits(char in[]) {
 
 float_nstd scanFloat() {
   float_nstd fns = {0, true};
-  char number[30];
+  char number[31];
   fgets(number, 30, stdin);
   fns.num = strtof(number, 0);
   fns.status = isPartOfFloat(number[0]);
@@ -111,7 +123,7 @@ float_nstd *splitFloats(char in[], int numberCounter, int stringLength) {
 
 float_nstd *scanFloats() {
   char in[DEFAULT_STR_LENGTH];
-  fgets(in, DEFAULT_STR_LENGTH, stdin);
+  fgets(in, DEFAULT_STR_LENGTH - 1, stdin);
   int *res = countSplits(in);
   float_nstd *floats = splitFloats(in, res[0], res[1]);
   free(res);
@@ -120,9 +132,9 @@ float_nstd *scanFloats() {
 
 int_nstd scanInt() {
   int_nstd fns = {0, true};
-  char number[30];
+  char number[31];
   fgets(number, 30, stdin);
-  fns.num = strtof(number, 0);
+  fns.num = strtol(number, 0, 10);
   fns.status = isPartOfInt(number[0]);
   return fns;
 }
@@ -164,7 +176,7 @@ int_nstd *splitInts(char in[], int numberCounter, int stringLength) {
 
 int_nstd *scanInts() {
   char in[DEFAULT_STR_LENGTH];
-  fgets(in, DEFAULT_STR_LENGTH, stdin);
+  fgets(in, DEFAULT_STR_LENGTH - 1, stdin);
   int *res = countSplits(in);
   int_nstd *ints = splitInts(in, res[0], res[1]);
   free(res);
@@ -173,9 +185,9 @@ int_nstd *scanInts() {
 
 double_nstd scanDouble() {
   double_nstd fns = {0, true};
-  char number[45];
+  char number[46];
   fgets(number, 45, stdin);
-  fns.num = strtof(number, 0);
+  fns.num = strtod(number, 0);
   fns.status = isPartOfFloat(number[0]);
   return fns;
 }
@@ -217,7 +229,7 @@ double_nstd *splitDoubles(char in[], int numberCounter, int stringLength) {
 
 double_nstd *scanDoubles() {
   char in[DEFAULT_STR_LENGTH];
-  fgets(in, DEFAULT_STR_LENGTH, stdin);
+  fgets(in, DEFAULT_STR_LENGTH - 1, stdin);
   int *res = countSplits(in);
   double_nstd *doubles = splitDoubles(in, res[0], res[1]);
   free(res);
@@ -228,4 +240,8 @@ double_nstd *scanDoubles() {
 int uniform(int min, int max) {
   // Функция имитирует поведение random.uniform для положительных min и max
   return rand() % (max - min + 1) + min;
+}
+
+double dUniform(double min, double max) {
+  return min + (rand() / (RAND_MAX / (max - min)));
 }

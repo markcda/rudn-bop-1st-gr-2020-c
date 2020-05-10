@@ -46,7 +46,7 @@ void l7_1() { test(); }
 char *getInput() {
   char *str = NULL;
   str = (char *)malloc(DEFAULT_STR_LENGTH * sizeof(char));
-  fgets(str, DEFAULT_STR_LENGTH, stdin);
+  fgets(str, DEFAULT_STR_LENGTH - 1, stdin);
   return str;
 }
 
@@ -128,7 +128,7 @@ void l7_3() {
 void l7_4() {
   printf("\tВведите строку: ");
   char *str = (char *)malloc(DEFAULT_STR_LENGTH * sizeof(char));
-  fgets(str, DEFAULT_STR_LENGTH, stdin);
+  fgets(str, DEFAULT_STR_LENGTH - 1, stdin);
   char *set = NULL;
   int cntr = 0;
   bool second = false;
@@ -190,13 +190,13 @@ void l7_4() {
 void l7_6() {
   printf("Введите строку: ");
   char *str = (char *)malloc(DEFAULT_STR_LENGTH * sizeof(char));
-  fgets(str, DEFAULT_STR_LENGTH, stdin);
+  fgets(str, DEFAULT_STR_LENGTH - 1, stdin);
   printf("Введите подстроку поиска: ");
   char *search = (char *)malloc(DEFAULT_STR_LENGTH * sizeof(char));
-  fgets(search, DEFAULT_STR_LENGTH, stdin);
+  fgets(search, DEFAULT_STR_LENGTH - 1, stdin);
   printf("Введите подстроку замены: ");
   char *replace = (char *)malloc(DEFAULT_STR_LENGTH * sizeof(char));
-  fgets(replace, DEFAULT_STR_LENGTH, stdin);
+  fgets(replace, DEFAULT_STR_LENGTH - 1, stdin);
   char *p;
   int index = -1;
   if ((p = strstr(str, search)) != NULL)

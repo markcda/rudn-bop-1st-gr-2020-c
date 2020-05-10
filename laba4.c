@@ -193,9 +193,9 @@ void guessNumber() {
 /* Напишите программу, вычисляющую значение числа π по этим формулам первые
 n-итераций. Выводите все итерации и текущее значение числа π с 10-ю знаками
 после запятой в следующем формате:
-|----------------|
-| N | piML | piV |
-|----------------|
+|--------------|
+| N | πML | πV |
+|--------------|
 */
 const long double piRes = 3.141592;
 
@@ -234,11 +234,11 @@ void piNum() {
   long double MLtotal = 0.0, Vtotal = 1.0;
   printf("\t|--------------------------------------|\n");
   for (int i = 0; i < iters.num; i++) {
-    // 1. piML (Мадхава-Лейбниц)
+    // 1. πML (Мадхава-Лейбниц)
     MLtotal += (long double)MLsign * ((long double)1 / MLdown);
     MLsign *= -1;
     MLdown += 2;
-    // 2. piV (Валлис)
+    // 2. vV (Валлис)
     Vtotal *= (long double)Vup / Vdown;
     if (i % 2 == 1)
       Vup += 2;
@@ -251,7 +251,7 @@ void piNum() {
     // printf("\t| %d | %Lf | %Lf |", (i + 1), MLtotal * 4, Vtotal * 2);
   }
   printf("\t|--------------------------------------|\n");
-  printf("\t|     Ni     |    piML    |     piV    |\n");
+  printf("\t|     Ni     |    πML     |     πV     |\n");
   printf("\t|--------------------------------------|\n");
 }
 
@@ -313,11 +313,11 @@ void pyramid2() {
 них не является числом, то должна выполняться конкатенация, т. е. соединение,
 строк. В остальных случаях введенные числа суммируются. */
 void adding() {
-  char values[2][256];
+  char values[2][DEFAULT_STR_LENGTH];
   printf("\tВведите в двух последующих строчках необходимые символы:\n");
   for (unsigned int i = 0; i < 2; i++) {
     printf("\t");
-    fgets(values[i], 256, stdin);
+    fgets(values[i], DEFAULT_STR_LENGTH - 1, stdin);
   }
   unsigned int lengths[2] = {0, 0};
   // Уточним их длины (то есть поймём, когда был введён нуль-терминатор или
@@ -424,7 +424,7 @@ void travelTime() {
   while (allTime < 12 * 60) {
     printf("\tВведите место, в которое вы сегодня собрались: ");
     char curr[DEFAULT_STR_LENGTH];
-    fgets(curr, DEFAULT_STR_LENGTH, stdin);
+    fgets(curr, DEFAULT_STR_LENGTH - 1, stdin);
     if (isEndOfString(curr[0]))
       return;
     short int timeTo = -1;

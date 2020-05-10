@@ -5,6 +5,7 @@
 #include "laba5.h"
 #include "laba6.h"
 #include "laba7.h"
+#include "laba8.h"
 #include "nonstdio.h"
 
 void starter(int variant) {
@@ -129,6 +130,38 @@ void starter(int variant) {
     its_a_kind_of_magic();
     break;
   }
+  case 31: {
+    l8_e1();
+    break;
+  }
+  case 32: {
+    l8_e2();
+    break;
+  }
+  case 33: {
+    l8_e3();
+    break;
+  }
+  case 34: {
+    l8_e4();
+    break;
+  }
+  case 35: {
+    l8_1();
+    break;
+  }
+  case 36: {
+    l8_2();
+    break;
+  }
+  case 37: {
+    l8_3();
+    break;
+  }
+  case 38: {
+    l8_4();
+    break;
+  }
   }
 }
 
@@ -180,6 +213,14 @@ int main() {
     printf("12) [Лаба 7] Задание 5 - Сложение\n");
     printf("29) [Лаба 7] Задание 6* - Авторассылка [не работает]\n");
     printf("30) [Лаба 7] Задание ** - Магический квадрат\n");
+    printf("31) [Лаба 8] Пример 1 - Работа интересных функций\n");
+    printf("32) [Лаба 8] Упражнение 2 - Преобразования пекаря\n");
+    printf("33) [Лаба 8] Упражнение 3 - Метод бисекции\n");
+    printf("34) [Лаба 8] Упражнение 4 - Сумма цифр числа\n");
+    printf("35) [Лаба 8] Задание 1 - Метод хорд\n");
+    printf("36) [Лаба 8] Задание 2 - Определённый интеграл\n");
+    printf("37) [Лаба 8] Задание 3 - Число π через метод Монте-Карло\n");
+    printf("38) [Лаба 8] Задание 4 - Метод Эйлера для задачи Коши (ОДУ)\n");
 
     // Ввод варианта
     fn = scanInt();
@@ -191,7 +232,7 @@ int main() {
     // Исполнение варианта
     starter(fn.num);
     printf("Нажмите ВВОД для продолжения...");
-    fgets(l, DEFAULT_STR_LENGTH, stdin);
+    fgets(l, DEFAULT_STR_LENGTH - 1, stdin);
   }
   return 0;
 }

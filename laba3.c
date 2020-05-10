@@ -31,7 +31,7 @@ void average() {
 void numberAndNumeral() {
   printf("\tВведите число, сумму цифр которого хотите получить: ");
   char number[DEFAULT_STR_LENGTH];
-  fgets(number, DEFAULT_STR_LENGTH, stdin);
+  fgets(number, DEFAULT_STR_LENGTH - 1, stdin);
   int sum;
   do {
     sum = 0;

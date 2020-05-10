@@ -40,6 +40,7 @@ typedef struct {
 } double_nstd;
 
 bool isEqual(char *str1, char *str2);
+bool containsChar(char *str, char sym);
 
 // Прикладные функции для определения типа символа
 bool isPartOfFloat(char sym);
@@ -61,5 +62,6 @@ scanDoubles(); // через пробел, в первом элементе - к
 
 // Прикладные функции для получения псевдослучайных наборов чисел
 int uniform(int min, int max);
+double dUniform(double min, double max);
 
 #endif // LABS_NONSTDIO_H

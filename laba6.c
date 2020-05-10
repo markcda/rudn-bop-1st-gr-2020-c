@@ -241,7 +241,7 @@ void matrix_l6_5() {
   while (1) {
     printf("\tВведите число: ");
     char number[DEFAULT_STR_LENGTH];
-    fgets(number, DEFAULT_STR_LENGTH, stdin);
+    fgets(number, DEFAULT_STR_LENGTH - 1, stdin);
     if ((not isPartOfInt(number[0])) and
         (not isPartOfInt(number[1] and not isPartOfFloat(number[0]))))
       break;
