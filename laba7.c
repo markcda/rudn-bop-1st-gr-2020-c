@@ -66,12 +66,15 @@ void printInt(int num) { printf("%d", num); }
 void l7_2() {
   printf("\tВведите число: ");
   char *str = getInput();
-  if (not testInput(str))
+  if (not testInput(str)) {
+    free(str);
     return;
+  }
   int num = strToInt(str);
   printf("\t");
   printInt(num);
   printf("\n");
+  free(str);
 }
 
 /* Задание 3.
@@ -98,8 +101,10 @@ void stats(double *a, int size, double *min, double *max, double *avg) {
 void l7_3() {
   printf("\tВведите элементы массива через пробел: ");
   double_nstd *array = scanDoubles();
-  if (not array[0].num)
+  if (not array[0].num) {
+    free(array);
     return;
+  }
   double *nums = NULL;
   int cntr = 0;
   for (int i = 0; i < array[0].num; i++) {
@@ -118,6 +123,7 @@ void l7_3() {
   printf("\tМинимальный элемент в массиве: %f\n", min);
   printf("\tМаксимальный элемент в массиве: %f\n", max);
   printf("\tСреднее арифметическое элементов массива: %f\n", avg);
+  free(nums);
 }
 
 /* Задание 4.
@@ -176,6 +182,8 @@ void l7_4() {
   set = (char *)realloc(set, cntr * sizeof(char));
   set[cntr - 1] = '\0';
   printf("\tПолучившийся набор символов: %s\n", set);
+  free(str);
+  free(set);
 }
 
 /* Задание 6*. «Авторассылка»
@@ -203,6 +211,9 @@ void l7_6() {
     index = p - str;
   else
     printf("В строке нет подстроки!");
+  free(str);
+  free(search);
+  free(replace);
 }
 
 /* Задание **. Магический квадрат

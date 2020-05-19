@@ -366,10 +366,14 @@ void playingArithmetic() {
   while (total < 5) {
     printf("\tВведите два числа через пробел: ");
     int_nstd *nums = scanInts();
-    if (nums[0].num != 2)
+    if (nums[0].num != 2) {
+      free(nums);
       return;
-    if (not nums[1].status or not nums[2].status)
+    }
+    if (not nums[1].status or not nums[2].status) {
+      free(nums);
       return;
+    }
     printf("\tЧему равно их произведение? ");
     int_nstd result = scanInt();
     if (not result.status)
@@ -388,6 +392,7 @@ void playingArithmetic() {
       printf("\tЛя, ты ошибся три раза подряд. Негоже так!\n");
       fails = 0;
     }
+    free(nums);
   }
   printf("\tА вот и победа! Ты справился, красавец))\n");
 }

@@ -8,12 +8,18 @@
 void matrix_l6_1() {
   printf("\tВведите размеры матрицы через пробел (строки и столбцы): ");
   int_nstd *size = scanInts();
-  if (size[0].num != 2)
+  if (size[0].num != 2) {
+    free(size);
     return;
-  if (not size[1].status or not size[2].status)
+  }
+  if (not size[1].status or not size[2].status) {
+    free(size);
     return;
-  if ((size[1].num < 1) or (size[2].num < 2))
+  }
+  if ((size[1].num < 1) or (size[2].num < 2)) {
+    free(size);
     return;
+  }
   int matrix[size[1].num][size[2].num];
   // Выбор варианта задания
   printf("\tКак вы хотите заполнить матрицу?\n");
@@ -44,15 +50,20 @@ void matrix_l6_1() {
         "\tВведите через пробел два числа, которые будут служить границами для "
         "генератора псевдослучайных чисел: ");
     int_nstd *limits = scanInts(); // LFPRNG
-    if (limits[0].num != 2)
+    if (limits[0].num != 2) {
+      free(limits);
       return;
-    if (not limits[1].status or not limits[2].status)
+    }
+    if (not limits[1].status or not limits[2].status) {
+      free(limits);
       return;
+    }
     int min = limits[1].num > limits[2].num ? limits[2].num : limits[1].num,
         max = limits[1].num > limits[2].num ? limits[1].num : limits[2].num;
     for (int i = 0; i < size[1].num; i++)
       for (int j = 0; j < size[2].num - 1; j++)
         matrix[i][j] = uniform(min, max);
+    free(limits);
   } else
     return;
   // Заполнение последнего столбца
@@ -79,12 +90,18 @@ void matrix_l6_2() {
   const int min = 1, max = 100;
   printf("\tВведите размеры матрицы через пробел (строки и столбцы): ");
   int_nstd *size = scanInts();
-  if (size[0].num != 2)
+  if (size[0].num != 2) {
+    free(size);
     return;
-  if (not size[1].status or not size[2].status)
+  }
+  if (not size[1].status or not size[2].status) {
+    free(size);
     return;
-  if ((size[1].num < 1) or (size[2].num < 1))
+  }
+  if ((size[1].num < 1) or (size[2].num < 1)) {
+    free(size);
     return;
+  }
   int matrix[size[1].num][size[2].num];
   for (int i = 0; i < size[1].num; i++)
     for (int j = 0; j < size[2].num; j++)
@@ -117,6 +134,7 @@ void matrix_l6_2() {
   }
   printf("\tМаксимальный элемент из минимальных - %d.\n", maxOfMins);
   printf("\tА минимальный из максимальных - %d.\n", minOfMaxs);
+  free(size);
 }
 
 /* Задание 3.
@@ -144,8 +162,10 @@ void matrix_l6_3() {
     for (int i = 0; i < size.num; i++) {
       printf("\tСтрока %d: ", i + 1);
       int_nstd *row = scanInts();
-      if (row[0].num != size.num)
+      if (row[0].num != size.num) {
+        free(row);
         return;
+      }
       for (int j = 0; j < size.num; j++)
         if (row[j + 1].status)
           matrix[i][j] = row[j + 1].num;
@@ -159,15 +179,20 @@ void matrix_l6_3() {
         "\tВведите через пробел два числа, которые будут служить границами для "
         "генератора псевдослучайных чисел: ");
     int_nstd *limits = scanInts(); // LFPRNG
-    if (limits[0].num != 2)
+    if (limits[0].num != 2) {
+      free(limits);
       return;
-    if (not limits[1].status or not limits[2].status)
+    }
+    if (not limits[1].status or not limits[2].status) {
+      free(limits);
       return;
+    }
     int min = limits[1].num > limits[2].num ? limits[2].num : limits[1].num,
         max = limits[1].num > limits[2].num ? limits[1].num : limits[2].num;
     for (int i = 0; i < size.num; i++)
       for (int j = 0; j < size.num; j++)
         matrix[i][j] = uniform(min, max);
+    free(limits);
   } else
     return;
   // Вывод матрицы
@@ -290,4 +315,5 @@ void matrix_l6_5() {
   printf("\t|-------|------------|-------|\n");
   printf("\t|  sign |   integer  |  frac |\n");
   printf("\t|-------|------------|-------|\n");
+  free(array);
 }
