@@ -2,7 +2,6 @@
 #define LABA9_H
 
 #include "nonstdio.h"
-#include <string.h>
 
 #define DEFAULT_STACK_SIZE 100
 

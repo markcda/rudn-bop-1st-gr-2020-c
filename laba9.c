@@ -760,7 +760,6 @@ void colossusAirlines() {
       for (int i = 0; i < 12; i++)
         if (places[i].isReserved)
           reservedPlaces[cntr++] = places[i].passengerName;
-      printf("All's okay");
       if (cntr)
         hsort(reservedPlaces, cntr, compare);
       else {

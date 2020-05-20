@@ -1,8 +1,17 @@
 #ifndef LABS_NONSTDIO_H
 #define LABS_NONSTDIO_H
 
+#ifdef _WIN32
+#include <Windows.h>
+#else
+#include <unistd.h>
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
+#include <math.h>
+#include <time.h>
+#include <string.h>
 
 #define DEFAULT_STR_LENGTH 1024
 #define and &&

@@ -2,7 +2,6 @@
 #define LABA5_H
 
 #include "nonstdio.h"
-#include <time.h>
 
 // Задание 1.
 void array_l5_1();

@@ -1,15 +1,6 @@
 #ifndef LABS_LABA4_H
 #define LABS_LABA4_H
 
-#ifdef _WIN32
-#include <Windows.h>
-#else
-#include <unistd.h>
-#endif
-
-#include <math.h>
-#include <time.h>
-
 #include "nonstdio.h"
 
 // Упражнение 1

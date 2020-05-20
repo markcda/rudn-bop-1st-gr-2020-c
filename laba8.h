@@ -2,7 +2,6 @@
 #define LABA8_H
 
 #include "nonstdio.h"
-#include <math.h>
 
 // Пример первый.
 void comparison();

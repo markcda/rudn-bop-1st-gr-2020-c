@@ -1,10 +1,6 @@
 #ifndef LABS_LABA3_H
 #define LABS_LABA3_H
 
-#include <math.h>
-#include <stdio.h>
-#include <time.h>
-
 #include "nonstdio.h"
 
 // Задание 1

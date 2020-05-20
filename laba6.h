@@ -2,7 +2,6 @@
 #define LABA6_H
 
 #include "nonstdio.h"
-#include <malloc.h>
 
 // Задание 1
 void matrix_l6_1();
