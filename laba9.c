@@ -336,39 +336,39 @@ void l9_e3() {
 https://iskustvoblog.wordpress.com/цветовая-арифметика/ */
 enum colors_s {
   // Первая попытка
-  //  invisible = 0,
-  //  red = 10,
-  //  yellow = 31,
-  //  blue = 70,
-  //  orange = 41,
-  //  green = 100,
-  //  violet = 80,
-  //  red_orange = 51,
-  //  yellow_green = 131,
-  //  blue_violet = 150,
-  //  red_violet = 90,
-  //  yellow_orange = 72,
-  //  blue_green = 170,
-  //  black = 120,
-  //  white = 122,
-  //  grey = 242
-  // Вторая попытка
   invisible = 0,
-  black = 1,
-  white = 2,
-  grey = 3,
-  red = 4,
-  blue = 16,
-  yellow = 64,
-  violet = 20,
-  orange = 68,
-  green = 80,
-  red_orange = 72,
-  yellow_green = 144,
-  blue_violet = 36,
-  red_violet = 24,
-  yellow_orange = 132,
-  blue_green = 96
+  red = 10,
+  yellow = 31,
+  blue = 70,
+  orange = 41,
+  green = 101,
+  violet = 80,
+  red_orange = 51,
+  yellow_green = 132,
+  blue_violet = 150,
+  red_violet = 90,
+  yellow_orange = 72,
+  blue_green = 171,
+  black = 120,
+  white = 122,
+  grey = 242
+  // Вторая попытка
+  //  invisible = 0,
+  //  black = 1,
+  //  white = 2,
+  //  grey = 3,
+  //  red = 4, // сначала думал, что всё работает... но black + grey != red.
+  //  blue = 16,
+  //  yellow = 64,
+  //  violet = 20,
+  //  orange = 68,
+  //  green = 80,
+  //  red_orange = 72,
+  //  yellow_green = 144,
+  //  blue_violet = 36,
+  //  red_violet = 24,
+  //  yellow_orange = 132,
+  //  blue_green = 96
 };
 
 void l9_1() {
@@ -376,28 +376,29 @@ void l9_1() {
          "помощи только лишь сложения в одной системе координат (по сути, "
          "необходимо две координаты минимум - чтобы изобразить плоскость "
          "цветов в полярных координатах), мы попытаемся избежать совпадений "
-         "при суммировании цветов, которые объявлены в перечислении. Это можно "
-         "сделать при помощи бинарного представления: 2 бита отдаются под "
-         "бесцветный/чёрный/белый/серый, 2 бита - под "
-         "бесцветный/красный/двойной красный/пустое значение, таким же образом "
-         "по 2 бита - для синего и жёлтого.\n\n");
+         "при суммировании цветов, которые объявлены в перечислении.\n\n");
+  /* Это можно сделать при помощи бинарного представления: 2 бита отдаются под
+   * бесцветный/чёрный/белый/серый, 2 бита - под бесцветный/красный/двойной
+   * красный/пустое значение, таким же образом по 2 бита - для синего и
+   * жёлтого.\n\n"); */
+  // UPD: нет (см. выше)
   printf("\tПредопределённые цвета:\n");
   printf("\t\tinvisible = 0\n");
-  printf("\t\tblack = 1\n");
-  printf("\t\twhite = 2\n");
-  printf("\t\tgrey = 3\n");
-  printf("\t\tred = 4\n");
-  printf("\t\tblue = 16\n");
-  printf("\t\tyellow = 64\n");
-  printf("\t\tviolet = 20\n");
-  printf("\t\torange = 68\n");
-  printf("\t\tgreen = 80\n");
-  printf("\t\tred_orange = 72\n");
-  printf("\t\tyellow_green = 144\n");
-  printf("\t\tblue_violet = 36\n");
-  printf("\t\tred_violet = 24\n");
-  printf("\t\tyellow_orange = 132\n");
-  printf("\t\tblue_green = 96\n");
+  printf("\t\tblack = 120\n");
+  printf("\t\twhite = 122\n");
+  printf("\t\tgrey = 242\n");
+  printf("\t\tred = 10\n");
+  printf("\t\tblue = 70\n");
+  printf("\t\tyellow = 31\n");
+  printf("\t\tviolet = 80\n");
+  printf("\t\torange = 41\n");
+  printf("\t\tgreen = 101\n");
+  printf("\t\tred_orange = 51\n");
+  printf("\t\tyellow_green = 132\n");
+  printf("\t\tblue_violet = 150\n");
+  printf("\t\tred_violet = 90\n");
+  printf("\t\tyellow_orange = 72\n");
+  printf("\t\tblue_green = 171\n");
   printf("\tВведите два цвета из перечисленных (или оставьте строку пустой для "
          "выхода): ");
   int_nstd *colors = scanInts();
@@ -759,6 +760,7 @@ void colossusAirlines() {
       for (int i = 0; i < 12; i++)
         if (places[i].isReserved)
           reservedPlaces[cntr++] = places[i].passengerName;
+      printf("All's okay");
       if (cntr)
         hsort(reservedPlaces, cntr, compare);
       else {
@@ -768,11 +770,14 @@ void colossusAirlines() {
       printf("\t\tАлфавитный список пассажиров:\n");
       for (int i = 0; i < cntr; i++) {
         printf("\t\t%s - ", reservedPlaces[i]);
-        for (int j = 0; j < 12; j++)
+        for (int j = 0; j < 12; j++) {
+          if (not places[j].passengerName)
+            continue;
           if (not strcmp(reservedPlaces[i], places[j].passengerName)) {
             printf("%d\n", places[j].num);
             break;
           }
+        }
       }
     } else if (l[0] == 'd') {
       printf(
