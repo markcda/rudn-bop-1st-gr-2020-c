@@ -560,11 +560,11 @@ char hexGen(unsigned b1, unsigned b2, unsigned b3, unsigned b4) {
     break;
   }
   case 1: {
-    s = '0';
+    s = '1';
     break;
   }
   case 2: {
-    s = '1';
+    s = '2';
     break;
   }
   case 3: {
