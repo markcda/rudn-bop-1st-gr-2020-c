@@ -2,6 +2,7 @@
 #define LABA7_H
 
 #include "nonstdio.h"
+#include "laba9.h"
 
 // Задание 1.
 void positive();
@@ -25,6 +26,13 @@ void l7_4();
 
 // Задание 6*.
 void l7_6();
+
+// Задание 7*.
+void l7_7();
+
+// Задание 8*.
+int fact();
+void l7_8();
 
 // Задание **.
 void printMagicSquare(int **A, int n);

@@ -679,15 +679,14 @@ struct airplanePlace {
   char *passengerName;
 };
 
-void str_swap(char *a, char *b) {
-  char *t;
-  t = a;
-  a = b;
-  b = t;
+void str_swap(char **a, char **b) {
+  char **t = (char **)malloc(sizeof(char *));
+  *t = *a;
+  *a = *b;
+  *b = *t;
 }
 
-void heapify(char *arr[DEFAULT_STR_LENGTH], int rows, int i,
-             bool (*cmp)(const char *, const char *)) {
+void heapify(char **arr, int rows, int i, bool (*cmp)(char *, char *)) {
   int li, ri, big;
   while (1) {
     li = i * 2 + 1;
@@ -699,24 +698,31 @@ void heapify(char *arr[DEFAULT_STR_LENGTH], int rows, int i,
     if ((ri < rows) && (*cmp)(arr[ri], arr[big]))
       big = ri;
     if (big != i) {
-      str_swap(arr[big], arr[i]);
+      // printf("%s%s", arr[big], arr[i]);
+      str_swap(&arr[big], &arr[i]);
+      // printf("%s%s", arr[big], arr[i]);
       i = big;
     } else
       break;
   }
 }
 
-void hsort(char *arr[DEFAULT_STR_LENGTH], int rows,
-           bool (*cmp)(const char *, const char *)) {
+void hsort(char **arr, int rows, bool (*cmp)(char *, char *)) {
   for (int i = rows / 2; i >= 0; --i)
     heapify(arr, rows, i, cmp);
   for (int j = rows - 1; j >= 0; --j) {
-    str_swap(arr[0], arr[j]);
+    // printf("%s%s", arr[0], arr[j]);
+    str_swap(&arr[0], &arr[j]);
+    // printf("%s%s", arr[0], arr[j]);
     heapify(arr, j, 0, cmp);
   }
 }
 
-bool compare(const char *a, const char *b) { return (strcmp(a, b) > 0); }
+bool compare(char *a, char *b) {
+  // printf("%s", a);
+  // printf("%d ", (strcmp(a, b) > 0));
+  return (strcmp(a, b) > 0);
+}
 
 void colossusAirlines() {
   char l[DEFAULT_STR_LENGTH];

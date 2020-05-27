@@ -11,190 +11,150 @@
 
 void starter(int variant) {
   switch (variant) {
-  case 1: {
+  case 1:
     average();
     break;
-  }
-  case 2: {
+  case 2:
     numberAndNumeral();
     break;
-  }
-  case 3: {
+  case 3:
     maxAndMin();
     break;
-  }
-  case 4: {
+  case 4:
     cows();
     break;
-  }
-  case 5: {
+  case 5:
     lesJours();
     break;
-  }
-  case 6: {
+  case 6:
     pyramid();
     break;
-  }
-  case 7: {
+  case 7:
     fortunaNumber();
     break;
-  }
-  case 8: {
+  case 8:
     guessNumber();
     break;
-  }
-  case 9: {
+  case 9:
     piNum();
     break;
-  }
-  case 10: {
+  case 10:
     pifagoreanTable();
     break;
-  }
-  case 11: {
+  case 11:
     pyramid2();
     break;
-  }
-  case 12: {
+  case 12:
     adding();
     break;
-  }
-  case 13: {
+  case 13:
     playingArithmetic();
     break;
-  }
-  case 14: {
+  case 14:
     travelTime();
     break;
-  }
-  case 15: {
+  case 15:
     array_l5_1();
     break;
-  }
-  case 16: {
+  case 16:
     array_l5_2();
     break;
-  }
-  case 17: {
+  case 17:
     array_l5_3();
     break;
-  }
-  case 18: {
+  case 18:
     array_l5_4();
     break;
-  }
-  case 19: {
+  case 19:
     array_l5_5();
     break;
-  }
-  case 20: {
+  case 20:
     matrix_l6_1();
     break;
-  }
-  case 21: {
+  case 21:
     matrix_l6_2();
     break;
-  }
-  case 22: {
+  case 22:
     matrix_l6_3();
     break;
-  }
-  case 23: {
+  case 23:
     matrix_l6_4();
     break;
-  }
-  case 24: {
+  case 24:
     matrix_l6_5();
     break;
-  }
-  case 25: {
+  case 25:
     l7_1();
     break;
-  }
-  case 26: {
+  case 26:
     l7_2();
     break;
-  }
-  case 27: {
+  case 27:
     l7_3();
     break;
-  }
-  case 28: {
+  case 28:
     l7_4();
     break;
-  }
-  case 29: {
+  case 29:
     l7_6();
     break;
-  }
-  case 30: {
+  case 30:
     its_a_kind_of_magic();
     break;
-  }
-  case 31: {
+  case 31:
     l8_e1();
     break;
-  }
-  case 32: {
+  case 32:
     l8_e2();
     break;
-  }
-  case 33: {
+  case 33:
     l8_e3();
     break;
-  }
-  case 34: {
+  case 34:
     l8_e4();
     break;
-  }
-  case 35: {
+  case 35:
     l8_1();
     break;
-  }
-  case 36: {
+  case 36:
     l8_2();
     break;
-  }
-  case 37: {
+  case 37:
     l8_3();
     break;
-  }
-  case 38: {
+  case 38:
     l8_4();
     break;
-  }
-  case 39: {
+  case 39:
     l9_e1dot1();
     break;
-  }
-  case 40: {
+  case 40:
     l9_e1X2dot2();
     break;
-  }
-  case 41: {
+  case 41:
     l9_e2dot1();
     break;
-  }
-  case 42: {
+  case 42:
     l9_e3();
     break;
-  }
-  case 43: {
+  case 43:
     l9_1();
     break;
-  }
-  case 44: {
+  case 44:
     l9_2();
     break;
-  }
-  case 45: {
+  case 45:
     l9_3();
     break;
-  }
-  case 46: {
+  case 46:
     colossusAirlines();
     break;
-  }
+  case 47:
+    l7_7();
+    break;
+  case 48:
+    l7_8();
+    break;
   }
 }
 
@@ -255,13 +215,16 @@ int main() {
     printf("37) [Лаба 8] Задание 3 - Число π через метод Монте-Карло\n");
     printf("38) [Лаба 8] Задание 4 - Метод Эйлера для задачи Коши (ОДУ)\n");
     printf("39) [Лаба 9] Упражнение 1.1 - Стек\n");
-    printf("40) [Лаба 9] Упражнения 1.2, 2.2 - Поиск в глубину при помощи стека\n");
+    printf("40) [Лаба 9] Упражнения 1.2, 2.2 - Поиск в глубину при помощи "
+           "стека\n");
     printf("41) [Лаба 9] Упражнение 2.1 - Стек на основе структур\n");
     printf("42) [Лаба 9] Упражнение 3 - Побитовое задание данных\n");
     printf("43) [Лаба 9] Задание 1 - Сложение 16 цветов\n");
     printf("44) [Лаба 9] Задание 2 - Собери рюкзак\n");
     printf("45) [Лаба 9] Задание 3 - 16-ричное число с помощью объединения\n");
     printf("46) [Лаба 9] Задание 4 - Colossus Airlines\n");
+    printf("47) [Лаба 7] Задание 7* - Сортировка строк\n");
+    printf("48) [Лаба 7] Задание 8* - Факториал-генератор\n");
 
     // Ввод варианта
     fn = scanInt();

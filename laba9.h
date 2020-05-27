@@ -41,12 +41,10 @@ char hexGen(unsigned b1, unsigned b2, unsigned b3, unsigned b4);
 void l9_3();
 
 // Задание 4.
-void str_swap(char *a, char *b);
-void heapify(char *arr[], int rows, int i,
-             bool (*cmp)(const char *, const char *));
-void hsort(char *arr[DEFAULT_STR_LENGTH], int rows,
-           bool (*cmp)(const char *, const char *));
-bool compare(const char *a, const char *b);
+void str_swap(char **a, char **b);
+void heapify(char **arr, int rows, int i, bool (*cmp)(char *, char *));
+void hsort(char **arr, int rows, bool (*cmp)(char *, char *));
+bool compare(char *a, char *b);
 void colossusAirlines();
 
 #endif // LABA9_H
