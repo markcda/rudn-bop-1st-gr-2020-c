@@ -435,3 +435,113 @@ void l8_4() {
   printf("\tДля функции f(x) как y<1>'(x): y<%d> = %.5f\n", n.num, yn_1);
   printf("\tДля функции g(x) как y<1>'(x): y<%d> = %.5f\n", n.num, yn_2);
 }
+
+/* Задание 5*. «Просто итерации»
+ * Реализуйте метод итераций (метод простых итераций), аналогично заданию в
+ * Exemple 8.3. (см. "Программирование и информатика Антонюк В.А., Иванов А.П.",
+ * 2015). И протестируйте его на функции из задания Exemple 8.3. */
+double Iters(double x0, double epsilon, double iters, double (*fun)(double x)) {
+  do {
+    /* (1) [x<i+1> == F(x<i>)]  <==>  [f(x) == 0]. Отсюда:
+     * (2) [f(x) + 1 == 1] ==> [(f(x) + 1) * x == x] */
+    double x1 = (fun(x0) + 1) * x0;
+    if (fabs(x1 - x0) < epsilon)
+      return x1;
+    x0 = x1;
+    iters--;
+  } while (iters);
+  return x0;
+}
+
+void l8_5() {
+  printf("\tФункция f(x) = x - 0.333 * cos(x) - 0.7 * π\n");
+  printf("\tФункция g(x) = x ** 2 - 16 * x + 49\n");
+  printf("\tВведите необходимую точность вычислений (по умолчанию - 0.001): ");
+  double_nstd epsilon = scanDouble();
+  if (not epsilon.status) {
+    epsilon.status = true;
+    epsilon.num = 0.001;
+  }
+  if (epsilon.num < 0)
+    epsilon.num = 0.001;
+  printf("\tВведите максимальное число итераций (по умолчанию - 20 тысяч): ");
+  double_nstd iters = scanDouble();
+  if (not iters.status) {
+    iters.status = true;
+    iters.num = 20000;
+  }
+  if (iters.num < 1)
+    epsilon.num = 20000;
+  printf("\tТеперь введите x0 для f(x): ");
+  double_nstd x0_1 = scanDouble();
+  if (not x0_1.status)
+    return;
+  printf("\tИ введите x0 для g(x): ");
+  double_nstd x0_2 = scanDouble();
+  if (not x0_2.status)
+    return;
+  printf("\tРезультат работы алгоритма для f(x) - %.5f\n",
+         Iters(x0_1.num, epsilon.num, iters.num, f));
+  printf("\tРезультат работы алгоритма для g(x) - %.5f\n",
+         Iters(x0_2.num, epsilon.num, iters.num, g));
+}
+
+/* Задание 6*. «Правило Рунге»
+ * Используйте правило Рунге (https://ru.wikipedia.org/wiki/Правило_Рунге) для
+ * получения значения определённого интеграла из задания 2 с заданной точностью.
+ */
+double RungeKuttaRuleWithTrapezoidIntegralMethod(double a, double b,
+                                                 double epsilon, int steps,
+                                                 double (*fun)(double x)) {
+  double In = 0, I2n = 0;
+  do {
+    In = I2n;
+    I2n = 0;
+    double h = (b - a) / steps;
+    while (a + h < b) {
+      I2n += 0.5f * (fun(a) + fun(a + h)) * h;
+      a += h;
+    }
+    steps *= 2;
+  } while (fabs(I2n - In) / 3 < epsilon);
+  return I2n;
+}
+
+void l8_6() {
+  printf("\tФункция f(x) = x - 0.333 * cos(x) - 0.7 * π\n");
+  printf("\tФункция g(x) = x ** 2 - 16 * x + 49\n");
+  printf("\tВведите левую границу для вычисления интегралов: ");
+  double_nstd a = scanDouble();
+  if (not a.status)
+    return;
+  printf("\tВведите правую границу для вычисления интегралов: ");
+  double_nstd b = scanDouble();
+  if (not b.status)
+    return;
+  if (a.num >= b.num)
+    return;
+  printf("\tВведите точность интегрирования (по умолчанию - 0.001): ");
+  double_nstd epsilon = scanDouble();
+  if (not epsilon.status) {
+    epsilon.status = true;
+    epsilon.num = 0.001;
+  }
+  if (epsilon.num < 0)
+    epsilon.num = 0.001;
+  printf("\tВведите начальное число шагов (по умолчанию - 16): ");
+  int_nstd steps = scanInt();
+  if (not steps.status) {
+    steps.status = true;
+    steps.num = 16;
+  }
+  if (steps.num < 0)
+    steps.num = 16;
+  printf("\tРезультат работы метода трапеций с правилом Рунге-Кутты для f(x) - "
+         "%.5f\n",
+         RungeKuttaRuleWithTrapezoidIntegralMethod(a.num, b.num, epsilon.num,
+                                                   steps.num, f));
+  printf("\tРезультат работы метода трапеций с правилом Рунге-Кутты для g(x) - "
+         "%.5f\n",
+         RungeKuttaRuleWithTrapezoidIntegralMethod(a.num, b.num, epsilon.num,
+                                                   steps.num, g));
+}

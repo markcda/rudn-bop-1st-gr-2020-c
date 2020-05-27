@@ -49,4 +49,15 @@ double EilerODUmethod(double n, double h, double x0, bool printAllIters,
                       double (*fun)(double x), char *functionName);
 void l8_4();
 
+// Задание 5*.
+double Iters(double x0, double epsilon, double iters, double (*fun)(double x));
+void l8_5();
+
+// Задание 6*.
+double RungeKuttaRuleWithTrapezoidIntegralMethod(double a, double b,
+                                                 double epsilon,
+                                                 int steps,
+                                                 double (*fun)(double x));
+void l8_6();
+
 #endif // LABA8_H
