@@ -47,7 +47,7 @@ bool isPartOfInt(char sym) {
 }
 
 bool isEndOfString(char sym) {
-  if ((sym == '\0') or (sym == '\n') or ((int)sym == 10))
+  if ((sym == '\0') or (sym == '\n'))
     return true;
   return false;
 }

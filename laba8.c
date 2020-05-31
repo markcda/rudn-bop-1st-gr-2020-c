@@ -471,7 +471,7 @@ void l8_5() {
     iters.num = 20000;
   }
   if (iters.num < 1)
-    epsilon.num = 20000;
+    iters.num = 20000;
   printf("\tТеперь введите x0 для f(x): ");
   double_nstd x0_1 = scanDouble();
   if (not x0_1.status)

@@ -2,8 +2,8 @@
 #include <string.h>
 
 /* Задание 1.
- * В  программировании  можно  из  одной  функции  вызывать  другую.
- * Для  иллюстрации  этой возможности напишите программу по следующему
+ * В программировании можно из одной функции вызывать другую.
+ * Для иллюстрации этой возможности напишите программу по следующему
  * описанию. Основная ветка программы, не считая заголовков функций, состоит из
  * одной строки кода. Это вызов функции test(). В ней запрашивается на ввод
  * целое число. Если оно положительное, то вызывается функция positive(), тело
@@ -196,24 +196,56 @@ void l7_4() {
  * Новая подстрока: Арчибальт Аристархович
  * Здравствуйте, Арчибальт Аристархович. Сегодня совещание в 10.00 */
 void l7_6() {
-  printf("Введите строку: ");
+  printf("\tВведите строку: ");
   char *str = (char *)malloc(DEFAULT_STR_LENGTH * sizeof(char));
   fgets(str, DEFAULT_STR_LENGTH - 1, stdin);
-  printf("Введите подстроку поиска: ");
+  printf("\tВведите подстроку поиска: ");
   char *search = (char *)malloc(DEFAULT_STR_LENGTH * sizeof(char));
   fgets(search, DEFAULT_STR_LENGTH - 1, stdin);
-  printf("Введите подстроку замены: ");
+  printf("\tВведите подстроку замены: ");
   char *replace = (char *)malloc(DEFAULT_STR_LENGTH * sizeof(char));
   fgets(replace, DEFAULT_STR_LENGTH - 1, stdin);
-  char *p;
-  int index = -1;
-  if ((p = strstr(str, search)) != NULL)
-    index = p - str;
-  else
-    printf("В строке нет подстроки!");
+  bool isTracked = false;
+  int length = 0, index = -1;
+  for (int i = 0; not isEndOfString(str[i]); i++) {
+    if (not isTracked and (search[0] == str[i])) {
+      isTracked = true;
+      index = i;
+      length = 1;
+      for (int j = 0;
+           not isEndOfString(search[j]) and not isEndOfString(str[i]);
+           i++, j++) {
+        if (search[j] == str[i])
+          length++;
+        else {
+          isTracked = false;
+          index = -1;
+          length = 0;
+          break;
+        }
+      }
+      if (isTracked)
+        break;
+    }
+  }
+  // Теперь мы имеем индекс вхождения и длину подстроки.
+  if (not isTracked) {
+    printf("\tВ строке нет подстроки!");
+    return;
+  }
+  char *buffer = (char *)malloc(DEFAULT_STR_LENGTH * sizeof(char));
+  int i = 0;
+  for (; i < index; i++)
+    buffer[i] = str[i];
+  for (int j = 0; not isEndOfString(replace[j]); i++, j++)
+    buffer[i] = replace[j];
+  for (int j = index + length - 1; not isEndOfString(str[j]); i++, j++)
+    buffer[i] = str[j];
+  printf("\tРезультат: %s\n", buffer);
   free(str);
   free(search);
   free(replace);
+  free(buffer);
 }
 
 /* Задание 7*. «Сортировка строк».
