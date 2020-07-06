@@ -1,18 +1,19 @@
 #include "laba9.h"
 
 // Упражнение 1.
-void arr_push(int *stack, int *last, int a) {
-  stack[(*last)++] = a;
-  stack = (int *)realloc(stack, (*last + 1) * sizeof(int));
+void arr_push(int **stack, int *last, int a) {
+  *stack[(*last)++] = a;
+  *stack = (int *)realloc(*stack, (*last + 1) * sizeof(int));
+  *stack[*last] = 0;
 }
 
-int arr_pop(int *stack, int *last, bool *err) {
+int arr_pop(int **stack, int *last, bool *err) {
   if (*last == 0) {
     *err = true;
     return -1;
   }
-  int k = stack[--(*last)];
-  stack = (int *)realloc(stack, (*last + 1) * sizeof(int));
+  int k = *stack[--(*last)];
+  *stack = (int *)realloc(*stack, (*last + 1) * sizeof(int));
   return k;
 }
 
@@ -24,13 +25,14 @@ int *arr_dfs(int **graph, int *sizes, int amount, int search) {
   int *last = (int *)malloc(sizeof(int));
   *last = 0;
   int *queue = (int *)malloc((*last + 1) * sizeof(int));
-  arr_push(queue, last, search);
+  queue[0] = 0;
+  arr_push(&queue, last, search);
   while (*last) {
-    int v = arr_pop(queue, last, NULL);
+    int v = arr_pop(&queue, last, NULL);
     for (int w_index = 0; w_index < sizes[v]; w_index++) {
       int w = graph[v][w_index];
       if (levels[w] == -1) {
-        arr_push(queue, last, w);
+        arr_push(&queue, last, w);
         levels[w] = levels[v] + 1;
       }
     }
@@ -61,11 +63,11 @@ void l9_e1dot1() {
         free(options);
         break;
       }
-      arr_push(stack, last, options[2].num);
+      arr_push(&stack, last, options[2].num);
     } else if (options[1].num == 2) {
       bool *err = (bool *)malloc(sizeof(bool));
       *err = false;
-      int k = arr_pop(stack, last, err);
+      int k = arr_pop(&stack, last, err);
       if (not(*err))
         printf("\tЧисло в стеке: %d.\n", k);
       else
@@ -197,6 +199,7 @@ void l9_e1X2dot2() {
     else
       sizes[v++] = vs[0].num;
     A = (int **)realloc(A, (v + 1) * sizeof(int *));
+    A[v] = NULL;
     sizes = (int *)realloc(sizes, (v + 1) * sizeof(int));
     sizes[v] = 0;
     free(vs);
@@ -235,8 +238,10 @@ void l9_e1X2dot2() {
     printf("%d: %d, ", i, levels[i]);
   }
   printf("%d: %d}.\n", v - 1, levels[v - 1]);
+  free(levels);
   for (int i = 0; i <= v; i++)
-    free(A[i]);
+    if (A[i])
+      free(A[i]);
   free(A);
   free(sizes);
 }
@@ -403,7 +408,7 @@ void l9_1() {
          "выхода): ");
   int_nstd *colors = scanInts();
   while (colors[0].num == 2) {
-    char *color = (char *)malloc(40 * sizeof(char));
+    char *color = NULL;
     int sum = colors[1].num + colors[2].num;
     switch (sum) {
     case invisible: {
@@ -527,7 +532,6 @@ void l9_2() {
     fgets(takedThings, DEFAULT_STR_LENGTH - 1, stdin);
     if (isEndOfString(takedThings[0]))
       return;
-
     for (int i = 0; i < 7; i++) {
       if (strstr(takedThings, things[i].title)) {
         totalWeight += things[i].weight;
@@ -538,9 +542,12 @@ void l9_2() {
     if (totalWeight > maxWeight.num) {
       printf(
           "\tВес вещей превысил вес рюкзака. Хотите повторить попытку? (y/n) ");
+      takedThings = (char *)malloc(DEFAULT_STR_LENGTH * sizeof(char));
       fgets(takedThings, DEFAULT_STR_LENGTH - 1, stdin);
-      if (takedThings[0] != 'y')
+      if (takedThings[0] != 'y') {
+        free(takedThings);
         return;
+      }
     }
   } while (totalWeight > maxWeight.num);
   printf("\tРюкзак собран! Суммарный вес - %.3f кг, суммарная стоимость - %.2f "
@@ -668,6 +675,7 @@ void str_swap(char **a, char **b) {
   *t = *a;
   *a = *b;
   *b = *t;
+  free(t);
 }
 
 void heapify(char **arr, int rows, int i, bool (*cmp)(char *, char *)) {
@@ -746,6 +754,8 @@ void colossusAirlines() {
         printf(".\n");
     } else if (l[0] == 'c') {
       char *reservedPlaces[12];
+      for (int i = 0; i < 12; i++)
+        reservedPlaces[i] = NULL;
       int cntr = 0;
       for (int i = 0; i < 12; i++)
         if (places[i].isReserved)
@@ -844,7 +854,11 @@ void colossusAirlines() {
         continue;
       places[index].isReserved = false;
       free(places[index].passengerName);
+      places[index].passengerName = NULL;
     } else
       break;
   }
+  for (int i = 0; i < 12; i++)
+    if (places[i].passengerName)
+      free(places[i].passengerName);
 }

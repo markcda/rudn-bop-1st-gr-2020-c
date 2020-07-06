@@ -87,7 +87,14 @@ float_nstd scanFloat() {
 }
 
 float_nstd *splitFloats(char in[], int numberCounter, int stringLength) {
-  float_nstd *floats = malloc((numberCounter + 1) * sizeof(float_nstd));
+  if (numberCounter == 0) {
+    float_nstd *floats = (float_nstd *)malloc(sizeof(float_nstd));
+    floats[0].num = 0;
+    floats[0].status = true;
+    return floats;
+  }
+  float_nstd *floats =
+      (float_nstd *)malloc((numberCounter + 1) * sizeof(float_nstd));
   char temp[DEFAULT_STR_LENGTH];
   int i = 0, tI = 0, numeral = 0;
   bool prevIsSpace = true;
@@ -140,7 +147,13 @@ int_nstd scanInt() {
 }
 
 int_nstd *splitInts(char in[], int numberCounter, int stringLength) {
-  int_nstd *ints = malloc((numberCounter + 1) * sizeof(int_nstd));
+  if (numberCounter == 0) {
+    int_nstd *ints = (int_nstd *)malloc(sizeof(int_nstd));
+    ints[0].num = 0;
+    ints[0].status = true;
+    return ints;
+  }
+  int_nstd *ints = (int_nstd *)malloc((numberCounter + 1) * sizeof(int_nstd));
   char temp[DEFAULT_STR_LENGTH];
   int i = 0, tI = 0, numeral = 0;
   bool prevIsSpace = true;
@@ -150,7 +163,7 @@ int_nstd *splitInts(char in[], int numberCounter, int stringLength) {
   while (i < stringLength) {
     if (in[i] == ' ') {
       if (not prevIsSpace) {
-        ints[numeral + 1].num = atof(temp);
+        ints[numeral + 1].num = atoi(temp);
         numeral++;
         ints[numeral + 1].status = true;
         for (int j = 0; j < DEFAULT_STR_LENGTH; j++)
@@ -168,7 +181,7 @@ int_nstd *splitInts(char in[], int numberCounter, int stringLength) {
     }
     i++;
   }
-  ints[numeral + 1].num = atof(temp);
+  ints[numeral + 1].num = atoi(temp);
   ints[0].num = numeral + 1;
   ints[0].status = true;
   return ints;
@@ -193,7 +206,15 @@ double_nstd scanDouble() {
 }
 
 double_nstd *splitDoubles(char in[], int numberCounter, int stringLength) {
-  double_nstd *doubles = malloc((numberCounter + 1) * sizeof(float_nstd));
+  if (numberCounter == 0) {
+    double_nstd *doubles = (double_nstd *)malloc(sizeof(double_nstd));
+    doubles[0].num = 0;
+    doubles[0].status = true;
+    return doubles;
+  }
+  double_nstd *doubles =
+      (double_nstd *)malloc((numberCounter + 1) * sizeof(double_nstd));
+  printf("%d\n", numberCounter);
   char temp[DEFAULT_STR_LENGTH];
   int i = 0, tI = 0, numeral = 0;
   bool prevIsSpace = true;

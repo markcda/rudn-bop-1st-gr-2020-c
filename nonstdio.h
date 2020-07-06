@@ -7,11 +7,11 @@
 #include <unistd.h>
 #endif
 
+#include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <math.h>
-#include <time.h>
 #include <string.h>
+#include <time.h>
 
 #define DEFAULT_STR_LENGTH 1024
 #define and &&

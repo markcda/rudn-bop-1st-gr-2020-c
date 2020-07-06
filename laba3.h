@@ -1,5 +1,5 @@
-#ifndef LABS_LABA3_H
-#define LABS_LABA3_H
+#ifndef LABA3_H
+#define LABA3_H
 
 #include "nonstdio.h"
 
@@ -12,4 +12,4 @@ void numberAndNumeral();
 // Задание 3
 void maxAndMin();
 
-#endif // LABS_LABA3_H
+#endif // LABA3_H

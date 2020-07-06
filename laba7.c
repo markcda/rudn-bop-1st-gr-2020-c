@@ -107,14 +107,17 @@ void l7_3() {
   }
   double *nums = NULL;
   int cntr = 0;
+  printf("%f\n", array[0].num);
   for (int i = 0; i < array[0].num; i++) {
     if (not array[i + 1].status)
       break;
-    cntr++;
-    nums = (double *)realloc(nums, cntr * sizeof(double));
+    if (not nums)
+      nums = (double *)malloc(++cntr * sizeof(double));
+    else
+      nums = (double *)realloc(nums, ++cntr * sizeof(double));
     nums[cntr - 1] = array[i + 1].num;
   }
-  printf("\tВведённый массив:");
+  free(array);
   for (int i = 0; i < cntr; i++)
     printf(" %f", nums[i]);
   printf("\n");
@@ -269,21 +272,28 @@ void l7_6() {
  * < У лукоморья дуб зеленый; */
 void l7_7() {
   char *strs[100]; // hsort не работает с двойными указателями
-  printf("\tВведите строки, и они будут отсортированы.\n");
+  for (int i = 0; i < 100; i++)
+    strs[i] = NULL;
+  printf("\tВведите строки (не более 100), и они будут отсортированы.\n");
   printf("\tЧтобы остановить ввод, нажмите клавишу Enter в начале строки.\n");
   int cntr = 0;
   while (true) {
     printf("\t");
     char *str = (char *)malloc(DEFAULT_STR_LENGTH * sizeof(char));
     fgets(str, DEFAULT_STR_LENGTH - 1, stdin);
-    if (str[0] == '\n')
+    if (str[0] == '\n') {
+      free(str);
       break;
+    }
     strs[cntr] = str;
     cntr++;
   }
   hsort(strs, cntr, compare); // Из 9-ой лабы
   for (int i = 0; i < cntr; i++)
     printf("\t%s", strs[i]);
+  for (int i = 0; i < 100; i++)
+    if (strs[i])
+      free(strs[i]);
 }
 
 /* Задание 8*. Факториал-генератор
@@ -394,6 +404,7 @@ void its_a_kind_of_magic() {
     sum += i;
   sum /= n.num;
   createMagicSquares(A, sum, 0, n.num, out);
+  free(out);
   for (int i = 0; i < n.num; i++)
     free(A[i]);
   free(A);

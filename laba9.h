@@ -6,8 +6,8 @@
 #define DEFAULT_STACK_SIZE 100
 
 // Упражнение 1.
-void arr_push(int *stack, int *last, int a);
-int arr_pop(int *stack, int *last, bool *err);
+void arr_push(int **stack, int *last, int a);
+int arr_pop(int **stack, int *last, bool *err);
 int *arr_dfs(int **graph, int *sizes, int amount, int search);
 void l9_e1dot1();
 

@@ -80,6 +80,7 @@ void matrix_l6_1() {
       printf("%4d ", matrix[i][j]);
     printf("\n");
   }
+  free(size);
 }
 
 /* Задание 2.
@@ -189,10 +190,10 @@ void matrix_l6_3() {
     }
     int min = limits[1].num > limits[2].num ? limits[2].num : limits[1].num,
         max = limits[1].num > limits[2].num ? limits[1].num : limits[2].num;
+    free(limits);
     for (int i = 0; i < size.num; i++)
       for (int j = 0; j < size.num; j++)
         matrix[i][j] = uniform(min, max);
-    free(limits);
   } else
     return;
   // Вывод матрицы

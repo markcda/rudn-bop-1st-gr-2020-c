@@ -77,22 +77,22 @@ void array_l5_3() {
   printf(
       "\tВведите через пробел два числа, которые будут служить границами для "
       "генератора псевдослучайных чисел: ");
-  int_nstd *limits = scanInts(); // LFPRNG
+  int_nstd *limits = scanInts();
   if (limits[0].num != 2)
     return;
   if (not limits[1].status or not limits[2].status)
     return;
   int min = limits[1].num > limits[2].num ? limits[2].num : limits[1].num,
       max = limits[1].num > limits[2].num ? limits[1].num : limits[2].num;
+  free(limits);
   for (int i = 0; i < length.num; i++)
     array[i] = uniform(min, max);
   printf("\tМассив:");
   for (int i = 0; i < length.num; i++)
     printf(" %d", array[i]);
-  bool unique; // маркер
   int cntr = 0;
   for (int i = 0; i < length.num; i++) {
-    unique = true;
+    bool unique = true; // маркер
     for (int j = 0; j < length.num; j++)
       if (i != j and array[i] == array[j]) {
         unique = false;
@@ -123,13 +123,14 @@ void array_l5_4() {
   printf(
       "\tВведите через пробел два числа, которые будут служить границами для "
       "генератора псевдослучайных чисел: ");
-  int_nstd *limits = scanInts(); // LFPRNG
+  int_nstd *limits = scanInts();
   if (limits[0].num != 2)
     return;
   if (not limits[1].status or not limits[2].status)
     return;
   int min = limits[1].num > limits[2].num ? limits[2].num : limits[1].num,
       max = limits[1].num > limits[2].num ? limits[1].num : limits[2].num;
+  free(limits);
   for (int i = 0; i < length.num; i++)
     array[i] = uniform(min, max);
   printf("\tМассив:");

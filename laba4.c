@@ -197,7 +197,8 @@ void guessNumber() {
  * |--------------|
  * | N | πML | πV |
  * |--------------| */
-const long double piRes = 3.141592;
+const long double piRes = 3.141592; // для следующих заданий (алгоритм ML, 3 млн
+                                    // итераций, округление в меньшую сторону)
 
 long double piML(int iters) {
   int down = 1;
